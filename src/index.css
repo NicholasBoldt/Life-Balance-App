@@ -12,7 +12,7 @@ code {
 
 .flex-h {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 

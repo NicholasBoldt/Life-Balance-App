@@ -14,7 +14,15 @@ let running = {
   completed: true
 }
 
-let habits = [running]
+let reading = {
+  name: 'Reading',
+  amount: '10 Pages',
+  completed: false
+}
+
+let habits = [running, reading]
+
+
 
 class App extends React.Component {
   constructor() {
@@ -30,7 +38,7 @@ class App extends React.Component {
         <header className='header-footer'>LIFE BALANCE APP</header>
         <Switch>
           <Route exact path='/' render={() =>
-            <RolesPage />
+            <RolesPage name='life' habits={habits} />
           } />
           <Route exact path='/habits' render={() => 
             <HabitsPage />
