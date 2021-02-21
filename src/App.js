@@ -40,8 +40,8 @@ class App extends React.Component {
           <Route exact path='/' render={() =>
             <RolesPage name='life' habits={habits} />
           } />
-          <Route exact path='/habits' render={(props) => 
-            <HabitsPage />
+          <Route exact path='/habits' render={props => 
+            <HabitsPage habits={habits} />
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />
