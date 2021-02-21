@@ -10,17 +10,17 @@ function isCompleted(completed) {
 }
 
 function completedButton(props) {
-    return <button>Completed</button>;
+    return <button className="btn btn-default">Completed</button>;
 }
 
 function incompleteButton(props) {
-    return <button>Incomplete</button>;
+    return <button className="btn btn-default">Incomplete</button>;
 }
 
 const Habit = (props) => (
       <div className="flex-h">
-         <h2>{props.name} </h2>
-         <h2>{props.amount} </h2>
+         <div>{props.name} </div>
+         <div>{props.amount} </div>
          <div>{isCompleted(props.completed)}</div>
 
    
