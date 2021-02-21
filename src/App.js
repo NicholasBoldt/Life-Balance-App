@@ -1,8 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react'
 import Role from './components/Role/Role';
+import { Route, Switch } from 'react-router-dom';
 import { render } from 'react-dom';
+import HabitsPage from './pages/HabitsPage/HabitsPage';
+import RolesPage from './pages/RolesPage/RolesPage';
+import TasksPage from './pages/TasksPage/TasksPage';
 
 
 let running = {
@@ -20,12 +23,22 @@ class App extends React.Component {
     }
   }
 
-  
 
   render() {
     return (
       <div className="App">
-       <Role name="Life" habits={habits} />
+        <header className='header-footer'>LIFE BALANCE APP</header>
+        <Switch>
+          <Route exact path='/' render={() =>
+            <RolesPage />
+          } />
+          <Route exact path='/habits' render={() => 
+            <HabitsPage />
+          } />
+          <Route exact path='/tasks' render={() => 
+            <TasksPage />
+          } />
+        </Switch>
       </div>
     );
   }

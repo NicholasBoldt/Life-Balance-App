@@ -18,7 +18,7 @@ function incompleteButton(props) {
 }
 
 const Habit = (props) => (
-      <div className="flex-h">
+      <div>
          <h2>{props.name} </h2>
          <h2>{props.amount} </h2>
          <div>{isCompleted(props.completed)}</div>
