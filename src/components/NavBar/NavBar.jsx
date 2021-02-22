@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import './NavBar.css';
+import './NavBar.css';
 
 const NavBar = (props) => {
     let nav = props.user ?
     <div>
-      <Link to='' className='NavBar-link'>LOGOUT</Link>
+      <Link to='' className='NavBar-link' onClick={props.handleLogout} >LOGOUT</Link>
       &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
       <span className='NavBar-welcome'>Hello, {props.user.name}</span>
     </div>

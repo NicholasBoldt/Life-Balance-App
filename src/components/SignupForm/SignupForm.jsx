@@ -14,7 +14,6 @@ class SignupForm extends Component {
   handleChange = (e) => {
     this.props.updateMessage('');
     this.setState({
-      // Using ES2015 Computed Property Names
       [e.target.name]: e.target.value
     });
   }
@@ -23,7 +22,7 @@ class SignupForm extends Component {
     e.preventDefault();
     try {
       await userService.signup(this.state);
-      // Successfully signed up - show GamePage
+      this.props.handleSignup();
       this.props.history.push('/');
     } catch (err) {
       // Invalid user data (probably duplicate email)

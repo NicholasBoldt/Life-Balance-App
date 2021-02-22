@@ -38,22 +38,29 @@ class App extends React.Component {
     }
   }
 
-  addRole = (role) => {
-
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
   }
+
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  }
+
+
 
   render() {
     return (
       <div className="App">
         <header className='header-footer'>LIFE BALANCE APP</header>
-        <NavBar user={this.state.user} />
+        <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path='/' render={() =>
             <RolesPage roles={this.state.roles} handleChange={this.handleChange} addRole={this.addRole} />
           } />
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
-              history={history}
+              history={history} handleSignup={this.handleSignup}
             />
           }/>
           <Route exact path='/login' render={() => 
