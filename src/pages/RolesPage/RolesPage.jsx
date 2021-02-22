@@ -6,7 +6,18 @@ import Role from '../../components/Role/Role';
 const RolesPage = (props) => {
   return (
     <div className="RolesPage">
-        <Role name={props.name} habits={props.habits} />
+         {props.roles.map((role) =>
+            <Role name={role.name} />
+          )}
+        <form onSubmit={props.addRole}>
+           <label>
+             <div>ROLE</div>
+             <input name='role'
+            onChange={props.handleChange}/>
+          
+           </label>
+           <button >ADD ROLE</button>
+        </form>
     </div>
   );
 
