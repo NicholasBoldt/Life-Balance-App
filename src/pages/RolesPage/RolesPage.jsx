@@ -1,26 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { PromiseProvider } from 'mongoose';
-import Role from '../../components/Role/Role';
+import React, { Component } from "react";
+import Role from "../../components/Role/Role";
+import RoleForm from "../../components/RoleForm/RoleForm";
 
-const RolesPage = (props) => {
-  return (
-    <div className="RolesPage">
-         {props.roles.map((role) =>
-            <Role name={role.name} />
-          )}
-        <form onSubmit={props.addRole}>
-           <label>
-             <div>ROLE</div>
-             <input name='role'
-            onChange={props.handleChange}/>
-          
-           </label>
-           <button >ADD ROLE</button>
-        </form>
-    </div>
-  );
-
-};
+class RolesPage extends Component {
+  render() {
+    return (
+      <div className="RolesPage">
+        {this.props.roles.map((role) => (
+          <Role name={role.name} />
+        ))}
+        <RoleForm />
+      </div>
+    );
+  }
+}
 
 export default RolesPage;

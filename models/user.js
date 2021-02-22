@@ -3,11 +3,32 @@ const bcrypt = require("bcrypt");
 
 const SALT_ROUNDS = 6;
 
+var habitSchema = new mongoose.Schema({
+    name: String,
+    amount: String,
+    daily: {type: String, default: 'daily'},
+    completed: {type: Boolean, default: false},
+    completed_dates: [Date], // to calculate streak
+});
+
+var taskSchema = new mongoose.Schema({
+    name: String,
+    day: String,
+    time: Number
+});
+
+var roleSchema = new mongoose.Schema({
+    name: String,
+    habits: [habitSchema],
+    tasks:[taskSchema]
+});
+
 const userSchema = new mongoose.Schema(
   {
     name: String,
     email: { type: String, required: true, lowercase: true, unique: true },
     password: String,
+    roles: roleSchema
   },
   {
     timestamps: true,
