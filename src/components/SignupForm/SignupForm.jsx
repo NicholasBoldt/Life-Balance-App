@@ -22,7 +22,7 @@ class SignupForm extends Component {
     e.preventDefault();
     try {
       await userService.signup(this.state);
-      this.props.handleSignup();
+      this.props.handleSignupOrLogin();
       this.props.history.push('/');
     } catch (err) {
       // Invalid user data (probably duplicate email)

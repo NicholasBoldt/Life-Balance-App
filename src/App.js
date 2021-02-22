@@ -38,7 +38,7 @@ class App extends React.Component {
     }
   }
 
-  handleSignup = () => {
+  handleSignupOrLogin = () => {
     this.setState({user: userService.getUser()});
   }
 
@@ -60,11 +60,11 @@ class App extends React.Component {
           } />
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
-              history={history} handleSignup={this.handleSignup}
+              history={history} handleSignupOrLogin={this.handleSignupOrLogin}
             />
           }/>
-          <Route exact path='/login' render={() => 
-            <LoginPage />
+          <Route exact path='/login' render={({ history }) => 
+            <LoginPage history={history} handleSignupOrLogin={this.handleSignupOrLogin} />
           }/>
           <Route exact path='/habits' render={props => 
             <HabitsPage habits={habits} />
