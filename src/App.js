@@ -46,7 +46,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className='header-footer'>LIFE BALANCE APP</header>
-        <NavBar />
+        <NavBar user={this.state.user} />
         <Switch>
           <Route exact path='/' render={() =>
             <RolesPage roles={this.state.roles} handleChange={this.handleChange} addRole={this.addRole} />
