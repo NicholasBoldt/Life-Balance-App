@@ -32,9 +32,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      roles: [],
-      role: "",
-      user: userService.getUser()
+      user: userService.getUser(),
+      roles: []
     }
   }
 
@@ -47,6 +46,10 @@ class App extends React.Component {
     this.setState({ user: null });
   }
 
+  handleAddRole = () => {
+    this.setState({roles: this.user.roles});
+  }
+
 
 
   render() {
@@ -56,7 +59,7 @@ class App extends React.Component {
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path='/' render={() =>
-            <RolesPage roles={this.state.roles} handleChange={this.handleChange} addRole={this.addRole} />
+            <RolesPage roles={this.state.roles} user={this.state.user} handleChange={this.handleChange} addRole={this.handleAddRole} />
           } />
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import userService from '../../utils/userService';
+import rolesService from '../../utils/rolesService';
 
 class RoleForm extends Component {
   state = {
@@ -14,13 +14,13 @@ class RoleForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await userService.addRole(this.state);
+    try {
+      await rolesService.addRole(this.state);
+      this.props.handleAddRole();
+    } catch (err) {
 
-    // } catch (err) {
-    //   // Invalid user data (probably duplicate email)
-    //   this.props.updateMessage(err.message);
-    // }
+      
+    }
   }
 
 
@@ -45,7 +45,7 @@ class RoleForm extends Component {
           <div className="form-group">
             <div className="col-sm-12 text-center">
               <button
-                className="btn btn-default">
+                className="btn btn-default"> 
                 Add Role
               </button>
             </div>

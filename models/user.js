@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
     name: String,
     email: { type: String, required: true, lowercase: true, unique: true },
     password: String,
-    roles: roleSchema
+    roles: [roleSchema]
   },
   {
     timestamps: true,
