@@ -12,22 +12,6 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import userService from './utils/userService';
 
 
-let running = {
-  name: 'Running',
-  amount: '30 minutes',
-  completed: true
-}
-
-let reading = {
-  name: 'Reading',
-  amount: '10 Pages',
-  completed: false
-}
-
-let habits = [running, reading]
-
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -35,6 +19,10 @@ class App extends React.Component {
       user: userService.getUser(),
       roles: []
     }
+  }
+
+  componentDidMount(){
+    this.handleAddRole();
   }
 
   handleSignupOrLogin = () => {
@@ -59,7 +47,7 @@ class App extends React.Component {
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route exact path='/' render={() =>
-            <RolesPage roles={this.state.roles} user={this.state.user} handleChange={this.handleChange} addRole={this.handleAddRole} />
+            <RolesPage user={this.state.user} roles={this.state.roles} handleChange={this.handleChange} addRole={this.handleAddRole} />
           } />
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
@@ -70,7 +58,7 @@ class App extends React.Component {
             <LoginPage history={history} handleSignupOrLogin={this.handleSignupOrLogin} />
           }/>
           <Route exact path='/habits' render={props => 
-            <HabitsPage habits={habits} />
+            <HabitsPage />
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />
