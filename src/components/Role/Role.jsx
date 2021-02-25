@@ -6,6 +6,15 @@ import Task from '../Task/Task';
 const Role = (props) => (
       <div>
           <h3>{props.name}</h3>
+          <h4> Habits </h4>
+          {this.props.habits.map((habit) => (
+            <Habit name={habit.name} amount={habit.amount} completed={habit.completed} />
+          ))}
+          <h4> Tasks </h4>
+          {this.props.tasks.map((task) => (
+            <Task name={task.name} amount={task.amount} completed={task.completed} />
+          ))}
+
       </div>
  );
 
