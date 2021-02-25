@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import rolesService from '../../utils/rolesService';
 
-class RoleForm extends Component {
+class HabitForm extends Component {
   state = {
     name: "",
     amount: "",
