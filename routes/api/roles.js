@@ -8,7 +8,9 @@ const rolesCtrl = require('../../controllers/roles');
 
 /*---------- Protected Routes ----------*/
 router.use(require('../../config/auth'));
+router.get('/', checkAuth, rolesCtrl.index);
 router.post('/addRole', checkAuth, rolesCtrl.addRole);
+router.delete('/:id', checkAuth, rolesCtrl.delete);
 
 /*----- Helper Functions -----*/
 function checkAuth(req, res, next) {

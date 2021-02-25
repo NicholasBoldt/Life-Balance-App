@@ -11,6 +11,28 @@ function addRole(role) {
   })
 }
 
+function getAll() {
+  return fetch(BASE_URL, {
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    }),
+  }).then((res) => res.json());
+}
+
+function deleteRole(id) {
+  return fetch(BASE_URL + id, {
+    method: "DELETE",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    }),
+  }).then((res) => res.json());
+}
+
 export default {
-  addRole
+  addRole,
+  getAll,
+  deleteRole
 }

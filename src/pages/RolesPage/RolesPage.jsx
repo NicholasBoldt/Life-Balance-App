@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Role from "../../components/Role/Role";
 import RoleForm from "../../components/RoleForm/RoleForm";
+import { Link } from 'react-router-dom';
 
 class RolesPage extends Component {
   constructor(props) {
@@ -12,7 +12,10 @@ class RolesPage extends Component {
     return (
       <div className="RolesPage">
         {this.props.roles.map((role) => (
-          <Role name={role.name} />
+          <Link to={{
+            pathname: '/details',
+            state: {role}
+          }}>{role.name}</Link>
         ))}
         <RoleForm {...this.props} />
       </div>
