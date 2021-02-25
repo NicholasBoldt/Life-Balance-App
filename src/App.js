@@ -92,7 +92,7 @@ class App extends React.Component {
             <HabitsPage />
           } />
           <Route exact path='/details' render={({location}) => 
-            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit}/>
+            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit} handleAddTask={this.handleAddTask}/>
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />

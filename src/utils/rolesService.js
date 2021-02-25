@@ -32,18 +32,33 @@ function deleteRole(id) {
 }
 
 function addHabit(habit, id) {
-    console.log(habit)
-    return fetch(BASE_URL + id + '/addHabit', {
-      method: 'POST',
-      headers: new Headers({'Content-Type': 'application/json',
-       'Authorization': 'Bearer ' + tokenService.getToken()}),
-      body: JSON.stringify(habit),
-    })
-  }
+  console.log(habit);
+  return fetch(BASE_URL + id + "/addHabit", {
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    }),
+    body: JSON.stringify(habit),
+  });
+}
+
+function addTask(task, id) {
+  console.log(task);
+  return fetch(BASE_URL + id + "/addTask", {
+    method: "POST",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    }),
+    body: JSON.stringify(task),
+  });
+}
 
 export default {
   addRole,
   getAll,
   deleteRole,
-  addHabit
+  addHabit,
+  addTask
 }

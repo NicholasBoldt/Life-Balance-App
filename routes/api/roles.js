@@ -13,6 +13,7 @@ router.post('/addRole', checkAuth, rolesCtrl.addRole);
 router.delete('/:id', checkAuth, rolesCtrl.delete);
 
 router.post('/:id/addHabit', checkAuth, rolesCtrl.addHabit);
+router.post('/:id/addTask', checkAuth, rolesCtrl.addTask);
 
 /*----- Helper Functions -----*/
 function checkAuth(req, res, next) {
