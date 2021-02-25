@@ -12,6 +12,8 @@ router.get('/', checkAuth, rolesCtrl.index);
 router.post('/addRole', checkAuth, rolesCtrl.addRole);
 router.delete('/:id', checkAuth, rolesCtrl.delete);
 
+router.post('/:id/addHabit', checkAuth, rolesCtrl.addHabit);
+
 /*----- Helper Functions -----*/
 function checkAuth(req, res, next) {
     if (req.user) return next();

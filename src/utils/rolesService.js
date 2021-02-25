@@ -31,8 +31,19 @@ function deleteRole(id) {
   }).then((res) => res.json());
 }
 
+function addHabit(habit, id) {
+    console.log(habit)
+    return fetch(BASE_URL + id + '/addHabit', {
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json',
+       'Authorization': 'Bearer ' + tokenService.getToken()}),
+      body: JSON.stringify(habit),
+    })
+  }
+
 export default {
   addRole,
   getAll,
-  deleteRole
+  deleteRole,
+  addHabit
 }

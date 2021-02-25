@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import rolesService from '../../utils/rolesService';
 
 class HabitForm extends Component {
-  state = {
-    name: "",
-    amount: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      amount: "",
+    };
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -13,13 +16,12 @@ class HabitForm extends Component {
     });
   };
 
-//   handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     await rolesService.addHabit(this.state);
-//     this.props.handleAddRole();
-//     this.props.history.push("/");
-//   };
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    await rolesService.addHabit(this.state, this.props.role._id);
+    this.props.handleAddHabit();
+    // this.props.history.push("/details");
+  };
 
   render() {
     return (

@@ -50,6 +50,11 @@ class App extends React.Component {
 
   }
 
+  handleAddHabit = async () => {
+    const roles = await rolesService.getAll();
+    this.setState({roles: roles})
+  }
+
   // Life Cycle
 
   async componentDidMount() {
@@ -87,7 +92,7 @@ class App extends React.Component {
             <HabitsPage />
           } />
           <Route exact path='/details' render={({location}) => 
-            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole}/>
+            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit}/>
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />

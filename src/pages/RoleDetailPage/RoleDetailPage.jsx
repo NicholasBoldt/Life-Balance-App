@@ -7,11 +7,12 @@ function RoleDetailPage(props) {
   return (
     <div>
       <Role name={role.name} habits={role.habits} tasks={role.tasks} />
+      <HabitForm role={role} handleAddHabit={props.handleAddHabit}/>
       <button
           className='btn btn-danger'
           onClick={() => props.handleDeleteRole(role._id)}
         >Delete Role</button>
-        <HabitForm />
+   
     </div>
 
 
