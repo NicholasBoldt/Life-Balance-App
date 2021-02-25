@@ -11,12 +11,12 @@ class RolesPage extends Component {
   render() {
     return (
       <div className="RolesPage">
-        {this.props.roles.map((role) => (
+        {this.props.roles ? this.props.roles.map((role) => (
           <Link to={{
             pathname: '/details',
             state: {role}
           }}>{role.name}</Link>
-        ))}
+        )) : "" }
         <RoleForm {...this.props} />
       </div>
     );

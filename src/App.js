@@ -42,8 +42,9 @@ class App extends React.Component {
   }
 
   handleDeleteRole = async id => {
-    const roles =  rolesService.deleteRole(id);
+    const roles =  await rolesService.deleteRole(id);
     this.setState({roles: roles});
+    this.props.history.push('/');
     // this.setState(state => ({
     //   roles: state.roles.filter(role => role._id !== id)
     // }));
@@ -55,6 +56,16 @@ class App extends React.Component {
     this.setState({roles: roles})
   }
 
+
+  handleDeleteTask = async (id) => {
+    const roles = await rolesService.deleteTask(id);
+    this.setState({roles: roles});
+    // this.setState(state => ({
+    //   roles: state.roles.filter(role => role._id !== id)
+    // }));
+
+  }
+
   // Life Cycle
 
   async componentDidMount() {
@@ -62,12 +73,6 @@ class App extends React.Component {
     this.setState({roles: roles});
   }
 
-  // async componentDidUpdate(prevProps, prevState) {
-  //   if(this.state.roles.length !== prevState.roles.length) {
-  //     const roles = await rolesService.getAll();
-  //     this.setState({roles: roles});
-  //   }
-  // }
 
 
   render() {
@@ -77,8 +82,8 @@ class App extends React.Component {
    
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
-          <Route exact path='/' render={() =>
-            <RolesPage user={this.state.user} roles={this.state.roles} handleAddRole={this.handleAddRole} />
+          <Route exact path='/' render={({ history }) =>
+            <RolesPage history={history} user={this.state.user} roles={this.state.roles || []} handleAddRole={this.handleAddRole} />
           } />
           <Route exact path='/signup' render={({ history }) => 
             <SignupPage
@@ -88,11 +93,11 @@ class App extends React.Component {
           <Route exact path='/login' render={({ history }) => 
             <LoginPage history={history} handleSignupOrLogin={this.handleSignupOrLogin} />
           }/>
-          <Route exact path='/habits' render={props => 
+          <Route exact path='/habits' render={() => 
             <HabitsPage />
           } />
-          <Route exact path='/details' render={({location}) => 
-            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit} handleAddTask={this.handleAddTask}/>
+          <Route exact path='/details' render={({ location }) => 
+            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit} handleAddTask={this.handleAddTask} handleDeleteTask={this.handleDeleteTask} />
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />

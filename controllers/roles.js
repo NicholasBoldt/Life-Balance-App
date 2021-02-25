@@ -64,11 +64,30 @@ async function addTask(req, res) {
       res.status(400).json(err);
     }
   }
+  
+  async function deleteTask(req, res) {
+    user = await User.findById(req.user._id);
+    user.roles.forEach(function(role) {
 
+        const idx = role.tasks.findIndex(task => {
+            console.log("taskid:", task._id)
+            console.log("params:", req.params.id)
+            return task._id == req.params.id});
+        console.log(idx);
+        if(idx != -1) {
+            role.habits.splice(idx, 1);
+        }
+    });
+    await user.save();
+    res.status(200).json(user.roles);
+  }
+
+  
 module.exports = {
   addRole,
   index,
-  delete: deleteRole,
+  deleteRole,
   addHabit,
-  addTask
+  addTask,
+  deleteTask
 };

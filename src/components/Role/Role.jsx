@@ -17,7 +17,7 @@ const Role = (props) => (
           ))}
           <h4> Tasks </h4>
           {props.tasks.map((task) => (
-            <Task name={task.name} amount={task.amount} completed={task.completed} />
+            <Task name={task.name} taskId={task._id} handleDeleteTask={props.handleDeleteTask} />
           ))}
 
       </div>

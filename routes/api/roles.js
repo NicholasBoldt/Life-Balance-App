@@ -10,10 +10,11 @@ const rolesCtrl = require('../../controllers/roles');
 router.use(require('../../config/auth'));
 router.get('/', checkAuth, rolesCtrl.index);
 router.post('/addRole', checkAuth, rolesCtrl.addRole);
-router.delete('/:id', checkAuth, rolesCtrl.delete);
+router.delete('/:id', checkAuth, rolesCtrl.deleteRole);
 
 router.post('/:id/addHabit', checkAuth, rolesCtrl.addHabit);
 router.post('/:id/addTask', checkAuth, rolesCtrl.addTask);
+router.delete('/deleteTask/:id', checkAuth, rolesCtrl.deleteTask);
 
 /*----- Helper Functions -----*/
 function checkAuth(req, res, next) {

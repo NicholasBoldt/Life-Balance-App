@@ -55,10 +55,22 @@ function addTask(task, id) {
   });
 }
 
+function deleteTask(id) {
+    return fetch(BASE_URL + "deleteTask/" + id, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      }),
+    }).then((res) => res.json());
+  }
+
 export default {
   addRole,
   getAll,
   deleteRole,
   addHabit,
-  addTask
+  addTask,
+  deleteTask
 }
