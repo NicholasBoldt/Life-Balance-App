@@ -89,7 +89,7 @@ class App extends React.Component {
     this.setState({roles: roles});
   }
 
-  
+
 
 
 
@@ -132,7 +132,14 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/habits" render={() => <HabitsPage />} />
+          <Route exact path="/habits"
+            render={() => (
+              <HabitsPage
+                roles={this.state.roles}
+                handleCompleteHabit={this.handleCompleteHabit}
+              />
+            )}
+          />
           <Route
             exact
             path="/details"

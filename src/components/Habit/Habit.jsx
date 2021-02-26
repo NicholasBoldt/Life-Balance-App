@@ -12,8 +12,8 @@ function Habit(props) {
 
   return (
     <div className="Habit">
-      <div>{props.name} </div>
-      <div>{props.amount} </div>
+      <div>{props.name}&nbsp;&nbsp;{props.amount}  </div>
+
       <div>
         {props.completed ? (
           <button
