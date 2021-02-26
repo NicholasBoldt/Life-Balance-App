@@ -5,7 +5,7 @@ function Habit(props) {
   const [streak, setStreak] = useState(0);
 
   useEffect(() => {
-    setStreak();
+    // setStreak(props.handleGetStreak(props.id));
   });
 
   
@@ -25,10 +25,11 @@ function Habit(props) {
           <button
             className="btn btn-default"
             onClick={() => props.handleCompleteHabit(props.id)}>
-            Incomplete
+            Incomplete 
           </button>
         )}
       </div>
+
   
     </div>
   );

@@ -137,6 +137,7 @@ class App extends React.Component {
               <HabitsPage
                 roles={this.state.roles}
                 handleCompleteHabit={this.handleCompleteHabit}
+                handleGetStreak={this.handleGetStreak}
               />
             )}
           />

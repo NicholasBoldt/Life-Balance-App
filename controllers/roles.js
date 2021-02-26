@@ -82,11 +82,11 @@ async function addTask(req, res) {
   }
 
    async function calculateStreak(req, res) {
-    dates = [];
     user = await User.findById(req.user._id);
+    dates = [];
     user.roles.forEach((role) => {
       role.habits.forEach((habit) => {
-        if (habit._id == req.params.id) {
+        if (habit.id == req.params.id) {
             console.log("dates:", habit.completed_dates)
           dates = habit.completed_dates;
         }
