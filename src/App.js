@@ -76,9 +76,9 @@ class App extends React.Component {
     this.setState({roles: roles})
   }
 
-  handleGetStreak = async (id) => {
-    const streak = await rolesService.calculateStreak(id);
-    console.log(streak);
+  handleGetStreak = (id) => {
+    const streak = rolesService.calculateStreak(id);
+    return streak ;
   }
 
 

@@ -102,7 +102,7 @@ async function addTask(req, res) {
             current_date.setDate(current_date.getDate() - 1)
         }
     }
-    return streak;
+    res.status(200).json(streak);
 }
 
   async function completeHabit(req, res) {

@@ -16,20 +16,30 @@ function Habit(props) {
 
       <div>
         {props.completed ? (
-          <button
+        <div className="vAlign">
+            <button
             className="btn btn-success"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Completed
           </button>
+          &nbsp;
+          <i class="material-icons orange">whatshot</i> 1
+        </div>
         ) : (
-          <button
+            <div className="vAlign">
+            <button
             className="btn btn-default"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Incomplete 
           </button>
+          &nbsp;
+          <i class="material-icons">whatshot</i> 0
+        </div>
+         
         )}
+     
       </div>
-
+        
   
     </div>
   );
