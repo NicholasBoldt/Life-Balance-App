@@ -20,8 +20,8 @@ class TaskForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     await rolesService.addTask(this.state, this.props.role._id);
-    // this.props.handleAddTask();
-    // this.props.history.push("/details");
+    this.props.handleAddTask();
+
   };
 
   render() {
@@ -63,7 +63,7 @@ class TaskForm extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Add Habit</button>
+              <button className="btn btn-default">Add Task</button>
             </div>
           </div>
         </form>

@@ -39,6 +39,7 @@ class App extends React.Component {
    handleAddRole = async () => {
     const roles = await rolesService.getAll();
     this.setState({roles: roles})
+    this.props.history.push('/details');
   }
 
   handleDeleteRole = async id => {
@@ -58,12 +59,17 @@ class App extends React.Component {
 
 
   handleDeleteTask = async (id) => {
+    console.log("handledeletetask trigger")
     const roles = await rolesService.deleteTask(id);
     this.setState({roles: roles});
     // this.setState(state => ({
     //   roles: state.roles.filter(role => role._id !== id)
     // }));
+  }
 
+  handleAddTask = async () => {
+    const roles = await rolesService.getAll();
+    this.setState({roles: roles})
   }
 
   // Life Cycle
@@ -97,7 +103,7 @@ class App extends React.Component {
             <HabitsPage />
           } />
           <Route exact path='/details' render={({ location }) => 
-            <RoleDetailPage location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit} handleAddTask={this.handleAddTask} handleDeleteTask={this.handleDeleteTask} />
+            <RoleDetailPage roles={this.state.roles} location={location} handleDeleteRole={this.handleDeleteRole} handleAddHabit={this.handleAddHabit} handleAddTask={this.handleAddTask} handleDeleteTask={this.handleDeleteTask} />
           } />
           <Route exact path='/tasks' render={(props) => 
             <TasksPage />

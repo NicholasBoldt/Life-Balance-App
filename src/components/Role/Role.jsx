@@ -12,13 +12,13 @@ const Role = (props) => (
       <div>
           <h3>{props.name}</h3>
           <h4> Habits </h4>
-            {props.habits.map((habit) => (
+            {props.habits ? props.habits.map((habit) => (
             <Habit name={habit.name} amount={habit.amount} completed={habit.completed} />
-          ))}
+          )) : ""}
           <h4> Tasks </h4>
-          {props.tasks.map((task) => (
+          {props.tasks ? props.tasks.map((task) => (
             <Task name={task.name} taskId={task._id} handleDeleteTask={props.handleDeleteTask} />
-          ))}
+          )) : " "}
 
       </div>
  );

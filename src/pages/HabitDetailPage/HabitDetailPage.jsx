@@ -3,10 +3,9 @@ import Role from "../../components/Role/Role";
 import HabitForm from "../../components/HabitForm/HabitForm";
 import TaskForm from "../../components/TaskForm/TaskForm";
 
-
-function RoleDetailPage(props) {
-    const [roleId, setRoleId] = useState(props.location.state?.role._id);
-    const [currentRole, setCurrentRole] = useState({});
+function HabitDetailPage(props) {
+    const [HabitId, setHabitId] = useState(props.location.state?.habit._id);
+    const [currentHabit, setCurrentHabit] = useState({});
 
     useEffect(() => { 
         const roleIdx = props.roles.findIndex((role)=>{
@@ -17,12 +16,9 @@ function RoleDetailPage(props) {
 
   return (
     <div>
-      <Role name={currentRole.name} habits={currentRole.habits} tasks={currentRole.tasks} handleDeleteTask={props.handleDeleteTask} />
-      <HabitForm role={currentRole} handleAddHabit={props.handleAddHabit} history={props.history}/>
-      <TaskForm role={currentRole} handleAddTask={props.handleAddTask}  />
       <button
           className='btn btn-danger'
-          onClick={() => props.handleDeleteRole(currentRole._id)}
+          onClick={() => }
         >Delete Role</button>
    
     </div>
