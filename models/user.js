@@ -6,7 +6,6 @@ const SALT_ROUNDS = 6;
 var habitSchema = new mongoose.Schema({
     name: String,
     amount: String,
-    daily: {type: String, default: 'daily'},
     completed: {type: Boolean, default: false},
     completed_dates: [Date], // to calculate streak
 });

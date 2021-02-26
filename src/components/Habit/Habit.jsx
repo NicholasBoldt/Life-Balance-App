@@ -1,31 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react'
+import "./Habit.css";
 
-function isCompleted(completed) {
-    if (completed === true) {
-       return completedButton(); 
-    }
-    else {
-        return incompleteButton(); 
-    }
-}
+function Habit(props) {
+  const [streak, setStreak] = useState(0);
 
-function completedButton(props) {
-    return <button className="btn btn-default">Completed</button>;
-}
+  useEffect(() => {
+    setStreak();
+  });
 
-function incompleteButton(props) {
-    return <button className="btn btn-default">Incomplete</button>;
-}
+  
 
-const Habit = (props) => (
-      <div className="flex-h">
-         <div>{props.name} </div>
-         <div>{props.amount} </div>
-         <div>{isCompleted(props.completed)}</div>
-
-   
-    
+  return (
+    <div className="Habit">
+      <div>{props.name} </div>
+      <div>{props.amount} </div>
+      <div>
+        {props.completed ? (
+          <button
+            className="btn btn-success"
+            onClick={() => props.handleCompleteHabit(props.id)}>
+            Completed
+          </button>
+        ) : (
+          <button
+            className="btn btn-default"
+            onClick={() => props.handleCompleteHabit(props.id)}>
+            Incomplete
+          </button>
+        )}
       </div>
- );
+  
+    </div>
+  );
+};
 
 export default Habit;

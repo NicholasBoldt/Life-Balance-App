@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import RoleForm from "../../components/RoleForm/RoleForm";
 import { Link } from 'react-router-dom';
+import "./RolesPage.css"
 
 class RolesPage extends Component {
   constructor(props) {
@@ -11,8 +12,9 @@ class RolesPage extends Component {
   render() {
     return (
       <div className="RolesPage">
+        <div className="header-footer">Roles</div>
         {this.props.roles ? this.props.roles.map((role) => (
-          <Link to={{
+          <Link className="RolesPage-link" to={{
             pathname: '/details',
             state: {role}
           }}>{role.name}</Link>

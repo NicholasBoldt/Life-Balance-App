@@ -81,6 +81,58 @@ async function addTask(req, res) {
     res.status(200).json(user.roles);
   }
 
+   async function calculateStreak(req, res) {
+    dates = [];
+    user = await User.findById(req.user._id);
+    user.roles.forEach((role) => {
+      role.habits.forEach((habit) => {
+        if (habit._id == req.params.id) {
+            console.log("dates:", habit.completed_dates)
+          dates = habit.completed_dates;
+        }
+      });
+    });
+    let current_date = new Date()
+    current_date.setHours(0,0,0,0)
+    let streak = 0
+    for (let i = dates.length -1; i >= 0; i--) {
+        while(i >= 0 && dates[i].getTime() == current_date.getTime()) {
+            streak++
+            i--
+            current_date.setDate(current_date.getDate() - 1)
+        }
+    }
+    return streak;
+}
+
+  async function completeHabit(req, res) {
+    user = await User.findById(req.user._id);
+    user.roles.forEach(function(role) {
+        role.habits.forEach(function(habit) {
+            if (habit.id === req.params.id) {
+              console.log(habit.completed);
+              if (habit.completed) {
+                habit.completed = false;
+                user.save();
+                res.status(200).json(user.roles);
+              } else {
+                habit.completed = true;
+                let today = new Date();
+                today.setHours(0, 0, 0, 0);
+                today_exists_in_log = habit.completed_dates.some(
+                  (date_in_log) => date_in_log.getTime() == today.getTime()
+                );
+                if (!today_exists_in_log) {
+                  habit.completed_dates.push(today);
+                }
+                console.log(habit.completed);
+                user.save();
+                res.status(200).json(user.roles);
+              }
+            }
+        });
+    });
+  }
   
 module.exports = {
   addRole,
@@ -88,5 +140,7 @@ module.exports = {
   deleteRole,
   addHabit,
   addTask,
-  deleteTask
+  deleteTask,
+  completeHabit,
+  calculateStreak
 };

@@ -8,18 +8,22 @@ function HabitDetailPage(props) {
     const [currentHabit, setCurrentHabit] = useState({});
 
     useEffect(() => { 
-        const roleIdx = props.roles.findIndex((role)=>{
-            return role._id == roleId
+        const habitIdx = props.roles[roleIdx].findIndex((habit)=>{
+            return habit._id == habitId
         }) 
-        setCurrentRole(props.roles[roleIdx]);
+        setCurrentHabit(props.roles[roleIdx].habits[habitIdx]);
     }, [props])
 
   return (
     <div>
+        <button
+          className='btn btn-danger'
+          onClick={() => props.handleUpdateHabit(currentHabit._id)}
+        >Update Habit</button>
       <button
           className='btn btn-danger'
-          onClick={() => }
-        >Delete Role</button>
+          onClick={() => props.handleDeleteHabit(currentHabit._id)}
+        >Delete Habit</button>
    
     </div>
 

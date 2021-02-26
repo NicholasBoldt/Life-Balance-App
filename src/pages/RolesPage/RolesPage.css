@@ -1,0 +1,17 @@
+.RolesPage {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.RolesPage-link {
+    color: grey;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.RolesPage-link:hover {
+    text-decoration: underline;
+}

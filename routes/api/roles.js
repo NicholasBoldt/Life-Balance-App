@@ -13,6 +13,9 @@ router.post('/addRole', checkAuth, rolesCtrl.addRole);
 router.delete('/:id', checkAuth, rolesCtrl.deleteRole);
 
 router.post('/:id/addHabit', checkAuth, rolesCtrl.addHabit);
+router.post('/completeHabit/:id', checkAuth, rolesCtrl.completeHabit);
+router.get('/getStreak/:id', checkAuth, rolesCtrl.calculateStreak);
+
 router.post('/:id/addTask', checkAuth, rolesCtrl.addTask);
 router.delete('/deleteTask/:id', checkAuth, rolesCtrl.deleteTask);
 
