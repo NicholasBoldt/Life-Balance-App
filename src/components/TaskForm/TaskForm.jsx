@@ -40,7 +40,7 @@ class TaskForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="col-sm-12">
+            {/* <div className="col-sm-12">
               <input
                 type="text"
                 className="form-control"
@@ -59,7 +59,7 @@ class TaskForm extends Component {
                 name="time"
                 onChange={this.handleChange}
               />
-            </div>
+            </div> */}
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
