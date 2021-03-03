@@ -23,10 +23,10 @@ class HabitForm extends Component {
     // this.props.history.push("/details");
   };
 
-  render() {
+  render(props) {
     return (
       <div>
-        <header className="header-footer">Add Habit</header>
+        <header className="header-footer">{this.props.update ? 'Update Habit' : 'Add Habit'}</header>
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <div className="col-sm-12">

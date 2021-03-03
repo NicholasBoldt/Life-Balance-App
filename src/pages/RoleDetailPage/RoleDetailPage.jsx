@@ -30,6 +30,7 @@ function RoleDetailPage(props) {
         role={currentRole}
         handleAddHabit={props.handleAddHabit}
         history={props.history}
+        update={false}
       />
       <TaskForm role={currentRole} handleAddTask={props.handleAddTask} />
       <button

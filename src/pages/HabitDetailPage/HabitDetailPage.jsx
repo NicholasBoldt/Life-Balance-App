@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import HabitForm from "../../components/HabitForm/HabitForm"
 
 
 function HabitDetailPage(props) {
@@ -18,18 +19,20 @@ function HabitDetailPage(props) {
 
   return (
     <div>
-        <button
-          className='btn btn-danger'
-          onClick={() => props.handleUpdateHabit(currentHabit._id)}
-        >Update Habit</button>
+      <HabitForm update={true} handleUpdateHabit={props.handleUpdateHabit} habit={currentHabit}/>
+      {/* <button
+        className="btn btn-danger"
+        onClick={() => props.handleUpdateHabit(currentHabit._id)}
+      >
+        Update Habit
+      </button>
       <button
-          className='btn btn-danger'
-          onClick={() => props.handleDeleteHabit(currentHabit._id)}
-        >Delete Habit</button>
-   
+        className="btn btn-danger"
+        onClick={() => props.handleDeleteHabit(currentHabit._id)}
+      >
+        Delete Habit
+      </button> */}
     </div>
-
-
   );
 }
 
