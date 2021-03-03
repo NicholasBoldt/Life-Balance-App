@@ -57,6 +57,10 @@ class App extends React.Component {
     this.setState({roles: roles})
   }
 
+  handleUpdateHabit = async () => {
+    const roles = await rolesService.getAll();
+    this.setState({roles: roles})
+  }
 
   handleDeleteTask = async (id) => {
     console.log("handledeletetask trigger")
@@ -165,6 +169,7 @@ class App extends React.Component {
               <HabitDetailPage
                 roles={this.state.roles}
                 location={location}
+                handleUpdateHabit={this.handleUpdateHabit}
               />
             )}
           />

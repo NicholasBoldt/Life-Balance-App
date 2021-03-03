@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import HabitForm from "../../components/HabitForm/HabitForm"
-
+import Habit from "../../components/Habit/Habit"
 
 function HabitDetailPage(props) {
     const [roleId, setRoleId] = useState(props.location.state?.currentRole._id);
@@ -19,19 +19,8 @@ function HabitDetailPage(props) {
 
   return (
     <div>
+        <div>{currentHabit.name} {currentHabit.amount} </div>
       <HabitForm update={true} handleUpdateHabit={props.handleUpdateHabit} habit={currentHabit}/>
-      {/* <button
-        className="btn btn-danger"
-        onClick={() => props.handleUpdateHabit(currentHabit._id)}
-      >
-        Update Habit
-      </button>
-      <button
-        className="btn btn-danger"
-        onClick={() => props.handleDeleteHabit(currentHabit._id)}
-      >
-        Delete Habit
-      </button> */}
     </div>
   );
 }

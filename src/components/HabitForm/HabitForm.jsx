@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import rolesService from '../../utils/rolesService';
+import './HabitForm.css'
 
 class HabitForm extends Component {
   constructor(props) {
@@ -23,11 +24,19 @@ class HabitForm extends Component {
     // this.props.history.push("/details");
   };
 
+  handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+    await rolesService.updateHabit(this.state, this.props.habit._id);
+    this.props.handleUpdateHabit();
+    // this.props.history.push("/details");
+  };
+
+
   render(props) {
     return (
-      <div>
+      <div className="HabitForm">
         <header className="header-footer">{this.props.update ? 'Update Habit' : 'Add Habit'}</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+        <form className="form-horizontal" onSubmit={this.props.update ? this.handleUpdateSubmit : this.handleSubmit }>
           <div className="form-group">
             <div className="col-sm-12">
               <input
@@ -52,7 +61,7 @@ class HabitForm extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Add Habit</button>
+              <button className="btn btn-default">{this.props.update ? "Update Habit" : "Add Habit"}</button>
             </div>
           </div>
         </form>

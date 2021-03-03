@@ -51,11 +51,16 @@ async function updateHabit(req, res) {
     console.log(req.body);
     try {
       user = await User.findById(req.user._id);
+      console.log("user: ", user)
       user.roles.forEach(role => {
           role.habits.forEach(habit => {
             if(habit._id == req.params.id) {
-                habit.name = req.body.habitName,
-                habit.amount = req.body.habitAmount
+                console.log(habit._id)
+                console.log(habit)
+                habit.name = req.body.name,
+                habit.amount = req.body.amount
+            } else {
+                console.log("Habit not found")
             }
           });
       });
