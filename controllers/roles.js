@@ -72,6 +72,22 @@ async function updateHabit(req, res) {
     }
   }
 
+  async function deleteHabit(req, res) {
+    user = await User.findById(req.user._id);
+    user.roles.forEach(function(role) {
+        const idx = role.habits.findIndex(habit => {
+            console.log("habitid:", habit._id)
+            console.log("params:", req.params.id)
+            return habit._id == req.params.id});
+        console.log(idx);
+        if(idx != -1) {
+            role.habits.splice(idx, 1);
+        }
+    });
+    await user.save();
+    res.status(200).json(user.roles);
+  }
+
 async function addTask(req, res) {
     console.log(req.body);
     try {
@@ -165,6 +181,7 @@ module.exports = {
   deleteRole,
   addHabit,
   updateHabit,
+  deleteHabit,
   addTask,
   deleteTask,
   completeHabit,

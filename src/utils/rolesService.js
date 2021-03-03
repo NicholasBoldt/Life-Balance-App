@@ -54,6 +54,17 @@ export function updateHabit(habit, id) {
     }).then(res => res.json());
   }
 
+  function deleteHabit(id) {
+    return fetch(BASE_URL + id + "/deleteHabit", {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      }),
+    }).then((res) => res.json());
+  }
+
 function addTask(task, id) {
   console.log(task);
   return fetch(BASE_URL + id + "/addTask", {
@@ -104,6 +115,7 @@ export default {
   deleteRole,
   addHabit,
   updateHabit,
+  deleteHabit,
   addTask,
   deleteTask,
   completeHabit,
