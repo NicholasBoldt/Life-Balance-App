@@ -18,7 +18,7 @@ function RoleDetailPage(props) {
   return (
     <div className="RoleDetailPage">
       <Role
-        roleId={roleId}
+        currentRole={currentRole}
         name={currentRole.name}
         habits={currentRole.habits}
         tasks={currentRole.tasks}

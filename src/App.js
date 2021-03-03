@@ -10,6 +10,7 @@ import TasksPage from './pages/TasksPage/TasksPage';
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import SignupPage from './pages/SignupPage/SignupPage';
 import RoleDetailPage from './pages/RoleDetailPage/RoleDetailPage';
+import HabitDetailPage from './pages/HabitDetailPage/HabitDetailPage';
 import userService from './utils/userService';
 import rolesService from './utils/rolesService';
 
@@ -154,6 +155,16 @@ class App extends React.Component {
                 handleDeleteTask={this.handleDeleteTask}
                 handleCompleteHabit={this.handleCompleteHabit}
                 handleGetStreak={this.handleGetStreak}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/habit-details"
+            render={({ location }) => (
+              <HabitDetailPage
+                roles={this.state.roles}
+                location={location}
               />
             )}
           />

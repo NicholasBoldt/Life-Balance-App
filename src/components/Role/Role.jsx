@@ -1,24 +1,30 @@
-import React from 'react';
 import Habit from '../Habit/Habit';
 import Task from '../Task/Task';
+import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
 
 
 
 
-const Role = (props) => (
-  <div>
+function Role(props) {
+  const currentRole = props.currentRole
+  return (
+    <div>
     <div className="header-footer">{props.name}</div>
     <h4> Habits </h4>
     {props.habits
       ? props.habits.map((habit) => (
-          <Habit
+          <Link className="Role-link" to={{
+            pathname: '/habit-details',
+            state: {currentRole, habit}
+        }}><Habit
             id={habit._id}
             name={habit.name}
             amount={habit.amount}
             completed={habit.completed}
             handleCompleteHabit={props.handleCompleteHabit}
             handleGetStreak={props.handleGetStreak}
-          />
+          /></Link>
         ))
       : ""}
     <h4> Tasks </h4>
@@ -32,6 +38,7 @@ const Role = (props) => (
         ))
       : " "}
   </div>
-);
+  );
+};
 
 export default Role;

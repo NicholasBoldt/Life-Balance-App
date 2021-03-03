@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
-import Role from "../../components/Role/Role";
-import HabitForm from "../../components/HabitForm/HabitForm";
-import TaskForm from "../../components/TaskForm/TaskForm";
+
 
 function HabitDetailPage(props) {
-    const [HabitId, setHabitId] = useState(props.location.state?.habit._id);
+    const [roleId, setRoleId] = useState(props.location.state?.currentRole._id);
+    const [habitId, setHabitId] = useState(props.location.state?.habit._id);
     const [currentHabit, setCurrentHabit] = useState({});
 
     useEffect(() => { 
-        const habitIdx = props.roles[roleIdx].findIndex((habit)=>{
+        const roleIdx = props.roles.findIndex((role)=>{
+            return role._id == roleId
+        }) 
+        const habitIdx = props.roles[roleIdx].habits.findIndex((habit)=>{
             return habit._id == habitId
         }) 
         setCurrentHabit(props.roles[roleIdx].habits[habitIdx]);
@@ -31,4 +33,4 @@ function HabitDetailPage(props) {
   );
 }
 
-export default RoleDetailPage;
+export default HabitDetailPage;
