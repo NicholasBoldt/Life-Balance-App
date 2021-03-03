@@ -65,6 +65,7 @@ class HabitForm extends Component {
             </div>
           </div>
         </form>
+        <button className="btn btn-danger">Delete Habit</button>
       </div>
     );
   }
