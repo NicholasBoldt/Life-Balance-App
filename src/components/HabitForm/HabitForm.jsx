@@ -65,7 +65,7 @@ class HabitForm extends Component {
             </div>
           </div>
         </form>
-        <button className="btn btn-danger">Delete Habit</button>
+        {this.props.update ? <button className="btn btn-danger" onClick={() => this.props.handleDeleteHabit(this.props.habit._id)}>Delete Habit</button> : ""}
       </div>
     );
   }

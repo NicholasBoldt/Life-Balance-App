@@ -20,7 +20,7 @@ function HabitDetailPage(props) {
   return (
     <div>
         <div>{currentHabit.name} {currentHabit.amount} </div>
-      <HabitForm update={true} handleUpdateHabit={props.handleUpdateHabit} habit={currentHabit}/>
+      <HabitForm update={true} handleUpdateHabit={props.handleUpdateHabit} handleDeleteHabit={props.handleDeleteHabit} habit={currentHabit}/>
     </div>
   );
 }

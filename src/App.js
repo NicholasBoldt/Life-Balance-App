@@ -62,8 +62,16 @@ class App extends React.Component {
     this.setState({roles: roles})
   }
 
+  handleDeleteHabit = async (id) => {
+    const roles = await rolesService.deleteHabit(id);
+    this.setState({roles: roles});
+    this.props.history.push('/');
+    // this.setState(state => ({
+    //   roles: state.roles.filter(role => role._id !== id)
+    // }));
+  }
+
   handleDeleteTask = async (id) => {
-    console.log("handledeletetask trigger")
     const roles = await rolesService.deleteTask(id);
     this.setState({roles: roles});
     // this.setState(state => ({
@@ -170,6 +178,7 @@ class App extends React.Component {
                 roles={this.state.roles}
                 location={location}
                 handleUpdateHabit={this.handleUpdateHabit}
+                handleDeleteHabit={this.handleDeleteHabit}
               />
             )}
           />
