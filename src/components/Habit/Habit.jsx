@@ -1,7 +1,10 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import "./Habit.css";
 
 function Habit(props) {
+    const currentRole = props.currentRole;
+    const currentHabit = props.currentHabit;
   const [streak, setStreak] = useState(0);
 
   useEffect(() => {
@@ -36,7 +39,12 @@ function Habit(props) {
           <i class="material-icons">whatshot</i> 0 */}
         </div>
         )}
-     
+      </div>
+      <div>
+      <Link className="Role-link" to={{
+              pathname: '/habit-details',
+              state: {currentRole, currentHabit}
+          }}>Edit</Link>
       </div>
         
   

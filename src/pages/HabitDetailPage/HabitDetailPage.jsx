@@ -4,7 +4,7 @@ import Habit from "../../components/Habit/Habit"
 
 function HabitDetailPage(props) {
     const [roleId, setRoleId] = useState(props.location.state?.currentRole._id);
-    const [habitId, setHabitId] = useState(props.location.state?.habit._id);
+    const [habitId, setHabitId] = useState(props.location.state?.currentHabit._id);
     const [currentHabit, setCurrentHabit] = useState({});
 
     useEffect(() => { 

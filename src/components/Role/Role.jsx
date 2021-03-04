@@ -7,24 +7,21 @@ import React, {useState, useEffect} from 'react'
 
 
 function Role(props) {
-  const currentRole = props.currentRole
   return (
     <div>
     <div className="header-footer">{props.name}</div>
     <h4> Habits </h4>
     {props.habits
       ? props.habits.map((habit) => (
-          <Link className="Role-link" to={{
-            pathname: '/habit-details',
-            state: {currentRole, habit}
-        }}><Habit
+          <Habit
+            currentRole={props.currentRole}
             id={habit._id}
+            currentHabit={habit}
             name={habit.name}
             amount={habit.amount}
             completed={habit.completed}
             handleCompleteHabit={props.handleCompleteHabit}
-            handleGetStreak={props.handleGetStreak}
-          /></Link>
+            handleGetStreak={props.handleGetStreak} />
         ))
       : ""}
     <h4> Tasks </h4>
