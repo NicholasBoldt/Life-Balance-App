@@ -1,6 +1,6 @@
 .Habit { 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -11,4 +11,8 @@
 .vAlign {
     display: flex;
     align-items: center;
+}
+
+.Habit-complete {
+    width: 100px;
 }

@@ -15,13 +15,13 @@ function Habit(props) {
 
   return (
     <div className="Habit">
-      <div>{props.name}&nbsp;&nbsp;{props.amount}  </div>
+      <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div>
 
       <div>
         {props.completed ? (
         <div className="vAlign">
             <button
-            className="btn btn-success"
+            className="Habit-complete btn btn-success"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Completed
           </button>
@@ -31,7 +31,7 @@ function Habit(props) {
         ) : (
             <div className="vAlign">
             <button
-            className="btn btn-default"
+            className="Habit-complete btn btn-default"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Incomplete 
           </button>
@@ -41,7 +41,7 @@ function Habit(props) {
         )}
       </div>
       <div>
-      <Link className="Role-link" to={{
+      <Link className="Habit-link btn btn-default" to={{
               pathname: '/habit-details',
               state: {currentRole, currentHabit}
           }}>Edit</Link>
