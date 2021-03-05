@@ -3,7 +3,8 @@ import React from 'react'
 import Role from './components/Role/Role';
 import NavBar from './components/NavBar/NavBar';
 import { Redirect } from 'react-router-dom';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 
+'react-router-dom';
 import HabitsPage from './pages/HabitsPage/HabitsPage';
 import RolesPage from './pages/RolesPage/RolesPage';
 import TasksPage from './pages/TasksPage/TasksPage';
