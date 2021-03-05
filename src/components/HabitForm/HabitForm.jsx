@@ -21,14 +21,12 @@ class HabitForm extends Component {
     e.preventDefault();
     await rolesService.addHabit(this.state, this.props.role._id);
     this.props.handleAddHabit();
-    this.props.history.goBack();
   };
 
   handleUpdateSubmit = async (e) => {
     e.preventDefault();
     await rolesService.updateHabit(this.state, this.props.habit._id);
     this.props.handleUpdateHabit();
-    this.props.history.goBack();
   };
 
 
@@ -65,7 +63,7 @@ class HabitForm extends Component {
             </div>
           </div>
         </form>
-        {this.props.update ? <button className="btn btn-danger" onClick={() => this.props.handleDeleteHabit(this.props.habit._id)}>Delete Habit</button> : ""}
+        {this.props.update ? <button className="btn red lighten-2" onClick={() => this.props.handleDeleteHabit(this.props.habit._id)}>Delete Habit</button> : ""}
       </div>
     );
   }
