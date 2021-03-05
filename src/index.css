@@ -25,3 +25,8 @@ code {
   font-size: 24px;
   text-align: center;
 }
+
+.btn-success {
+  background-color: #50A359;
+  border-color: #50A359;
+}

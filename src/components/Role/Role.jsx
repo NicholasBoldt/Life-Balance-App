@@ -21,7 +21,9 @@ function Role(props) {
             amount={habit.amount}
             completed={habit.completed}
             handleCompleteHabit={props.handleCompleteHabit}
-            handleGetStreak={props.handleGetStreak} />
+            handleGetStreak={props.handleGetStreak}
+            displayEdit={true} />
+            
         ))
       : ""}
     <h4> Tasks </h4>

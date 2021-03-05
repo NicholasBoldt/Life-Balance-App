@@ -21,90 +21,88 @@ class App extends React.Component {
     super();
     this.state = {
       user: userService.getUser(),
-      roles: []
-    }
+      roles: [],
+    };
   }
-
-  
-
-  
 
   handleSignupOrLogin = () => {
-    this.setState({user: userService.getUser()});
-  }
+    this.setState({ user: userService.getUser() });
+  };
 
   handleLogout = () => {
     userService.logout();
     this.setState({ user: null });
-  }
+  };
 
-   handleAddRole = async () => {
+  handleAddRole = async () => {
     const roles = await rolesService.getAll();
-    this.setState({roles: roles})
-  }
+    this.setState({ roles: roles });
+  };
 
-  handleDeleteRole = async id => {
-    const roles =  await rolesService.deleteRole(id);
-    this.setState({roles: roles});
-    this.props.history.push('/');
+  handleDeleteRole = async (id) => {
+    const roles = await rolesService.deleteRole(id);
+    this.setState({ roles: roles });
+    this.props.history.push("/");
     // this.setState(state => ({
     //   roles: state.roles.filter(role => role._id !== id)
     // }));
-
-  }
+  };
 
   handleAddHabit = async () => {
     const roles = await rolesService.getAll();
-    this.setState({roles: roles})
-  }
+    this.setState({ roles: roles });
+  };
 
   handleUpdateHabit = async () => {
     const roles = await rolesService.getAll();
-    this.setState({roles: roles})
-  }
+    this.setState({ roles: roles });
+  };
 
   handleDeleteHabit = async (id) => {
     const roles = await rolesService.deleteHabit(id);
-    this.setState({roles: roles});
-    this.props.history.push('/');
+    this.setState({ roles: roles });
+    this.props.history.push("/");
     // this.setState(state => ({
     //   roles: state.roles.filter(role => role._id !== id)
     // }));
-  }
+  };
 
   handleDeleteTask = async (id) => {
     const roles = await rolesService.deleteTask(id);
-    this.setState({roles: roles});
+    this.setState({ roles: roles });
     // this.setState(state => ({
     //   roles: state.roles.filter(role => role._id !== id)
     // }));
-  }
+  };
 
   handleAddTask = async () => {
     const roles = await rolesService.getAll();
-    this.setState({roles: roles})
-  }
+    this.setState({ roles: roles });
+  };
 
   handleCompleteHabit = async (id) => {
     const roles = await rolesService.completeHabit(id);
-    this.setState({roles: roles})
-  }
+    this.setState({ roles: roles });
+  };
 
   handleGetStreak = (id) => {
     const streak = rolesService.calculateStreak(id);
-    return streak ;
+    return streak;
+  };
+
+
+  handleBack = () => {
+    this.props.history.goBack();
   }
+
 
 
   // Life Cycle
 
   async componentDidMount() {
     const roles = await rolesService.getAll();
-    this.setState({roles: roles});
+    this.setState({ roles: roles });
   }
-
-
-
 
 
   render() {
@@ -146,7 +144,9 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/habits"
+          <Route
+            exact
+            path="/habits"
             render={() => (
               <HabitsPage
                 roles={this.state.roles}
@@ -168,6 +168,7 @@ class App extends React.Component {
                 handleDeleteTask={this.handleDeleteTask}
                 handleCompleteHabit={this.handleCompleteHabit}
                 handleGetStreak={this.handleGetStreak}
+                history={this.props.history}
               />
             )}
           />
@@ -188,7 +189,6 @@ class App extends React.Component {
       </div>
     );
   }
-  
 }
 
 export default App;

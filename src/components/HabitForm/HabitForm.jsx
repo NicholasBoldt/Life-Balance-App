@@ -21,14 +21,14 @@ class HabitForm extends Component {
     e.preventDefault();
     await rolesService.addHabit(this.state, this.props.role._id);
     this.props.handleAddHabit();
-    // this.props.history.push("/details");
+    this.props.history.goBack();
   };
 
   handleUpdateSubmit = async (e) => {
     e.preventDefault();
     await rolesService.updateHabit(this.state, this.props.habit._id);
     this.props.handleUpdateHabit();
-    // this.props.history.push("/details");
+    this.props.history.goBack();
   };
 
 

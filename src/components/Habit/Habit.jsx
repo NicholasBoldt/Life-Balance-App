@@ -40,10 +40,10 @@ function Habit(props) {
           <i class="material-icons">whatshot</i> 0 */}
         </div>
         )}
-        <Link className="Habit-link btn btn-default" to={{
+        {props.displayEdit ? <Link className="Habit-link btn btn-default" to={{
               pathname: '/habit-details',
               state: {currentRole, currentHabit}
-          }}>Edit</Link>
+          }}>Edit</Link> : ""}
       </div>
       {/* <div>
       <Link className="Habit-link btn btn-default" to={{
