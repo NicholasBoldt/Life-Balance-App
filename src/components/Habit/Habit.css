@@ -1,18 +1,21 @@
 .Habit { 
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.orange {
-    color:orange;
-}
-
-.vAlign {
-    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .Habit-complete {
     width: 100px;
+}
+
+.Habit-text {
+    display: flex;
+    justify-content: right;
+    
+}
+
+
+.Habit-controls {
+    display: flex;
+    justify-content: right;
 }
