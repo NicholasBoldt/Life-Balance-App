@@ -22,7 +22,7 @@ function Habit(props) {
         {props.completed ? (
         <div>
             <button
-            className="Habit-complete btn btn-success"
+            className="Habit-complete btn-small"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Completed
           </button>
@@ -32,7 +32,7 @@ function Habit(props) {
         ) : (
             <div >
             <button
-            className="Habit-complete btn btn-default"
+            className="Habit-complete btn-small grey"
             onClick={() => props.handleCompleteHabit(props.id)}>
             Incomplete 
           </button>
@@ -40,7 +40,8 @@ function Habit(props) {
           <i class="material-icons">whatshot</i> 0 */}
         </div>
         )}
-        {props.displayEdit ? <Link className="Habit-link btn btn-default" to={{
+    
+        {props.displayEdit ? <Link className="Habit-link btn-small" to={{
               pathname: '/habit-details',
               state: {currentRole, currentHabit}
           }}>Edit</Link> : ""}

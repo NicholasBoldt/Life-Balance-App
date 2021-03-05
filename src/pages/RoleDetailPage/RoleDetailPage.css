@@ -6,3 +6,7 @@
     margin-bottom: 50px;
 }
 
+.RoleDetailPage-forms {
+    display: flex;
+    justify-content: space-evenly;
+}

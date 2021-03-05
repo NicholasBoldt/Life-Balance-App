@@ -19,18 +19,9 @@ function RoleDetailPage(props) {
 
   return (
     <div className="RoleDetailPage">
-      {/* <Role
-        currentRole={currentRole}
-        name={currentRole.name}
-        habits={currentRole.habits}
-        tasks={currentRole.tasks}
-        handleDeleteTask={props.handleDeleteTask}
-        handleCompleteHabit={props.handleCompleteHabit}
-        handleGetStreak={props.handleGetStreak}
-      /> */}
       <div>
         <div className="header-footer">{currentRole.name}</div>
-        <h4> Habits </h4>
+        <h5>Habits</h5>
         {currentRole.habits
           ? currentRole.habits.map((habit) => (
               <Habit
@@ -46,7 +37,7 @@ function RoleDetailPage(props) {
               />
             ))
           : ""}
-        <h4> Tasks </h4>
+        <h5>Tasks</h5>
         {currentRole.tasks
           ? currentRole.tasks.map((task) => (
               <Task
@@ -57,15 +48,18 @@ function RoleDetailPage(props) {
             ))
           : " "}
       </div>
-      <HabitForm
-        role={currentRole}
-        handleAddHabit={props.handleAddHabit}
-        history={props.history}
-        update={false}
-      />
-      <TaskForm role={currentRole} handleAddTask={props.handleAddTask} />
+      <div className="RoleDetailPage-forms">
+        <HabitForm
+          role={currentRole}
+          handleAddHabit={props.handleAddHabit}
+          history={props.history}
+          update={false}
+        />
+        &nbsp; &nbsp; &nbsp; &nbsp; 
+        <TaskForm role={currentRole} handleAddTask={props.handleAddTask} />
+      </div>
       <button
-        className="btn btn-danger"
+        className="btn red lighten-2"
         onClick={() => props.handleDeleteRole(currentRole._id)}
       >
         Delete Role
