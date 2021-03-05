@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react'
-import Role from './components/Role/Role';
 import NavBar from './components/NavBar/NavBar';
 import { Redirect } from 'react-router-dom';
 import { Route, Switch, withRouter } from 
