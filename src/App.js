@@ -24,8 +24,9 @@ class App extends React.Component {
     };
   }
 
-  handleSignupOrLogin = () => {
-    this.setState({ user: userService.getUser() });
+  handleSignupOrLogin = async () => {
+    this.setState({ user: userService.getUser()});
+    await this.handleAddRole();
   };
 
   handleLogout = () => {
@@ -61,17 +62,11 @@ class App extends React.Component {
     const roles = await rolesService.deleteHabit(id);
     this.setState({ roles: roles });
     this.props.history.push("/");
-    // this.setState(state => ({
-    //   roles: state.roles.filter(role => role._id !== id)
-    // }));
   };
 
   handleDeleteTask = async (id) => {
     const roles = await rolesService.deleteTask(id);
     this.setState({ roles: roles });
-    // this.setState(state => ({
-    //   roles: state.roles.filter(role => role._id !== id)
-    // }));
   };
 
   handleAddTask = async () => {
@@ -89,12 +84,9 @@ class App extends React.Component {
     return streak;
   };
 
-
   handleBack = () => {
     this.props.history.goBack();
-  }
-
-
+  };
 
   // Life Cycle
 
@@ -103,6 +95,12 @@ class App extends React.Component {
     this.setState({ roles: roles });
   }
 
+  // async componentDidUpdate(prevProps, prevState) {
+  //   if(prevState.roles.length !== this.state.roles.length) {
+  //     const roles = await rolesService.getAll();
+  //     this.setState({ roles: roles });
+  //   }
+  // }
 
   render() {
     return (
