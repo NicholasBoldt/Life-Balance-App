@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import rolesService from '../../utils/rolesService';
+import "./RoleForm.css";
 
 class RoleForm extends Component {
   state = {
@@ -30,27 +31,17 @@ class RoleForm extends Component {
     return (
       <div>
         <header className="header-footer">Add Role</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Role Name"
-                value={this.state.name}
-                name="name"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button
-                className="btn btn-default"> 
-                Add Role
-              </button>
-            </div>
-          </div>
+        <form className="RoleForm" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Role Name"
+            value={this.state.name}
+            name="name"
+            onChange={this.handleChange}
+          />
+
+          <button className="btn-small">Add Role</button>
         </form>
       </div>
     );

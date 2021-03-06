@@ -11,12 +11,15 @@ const HabitsPage = (props) => {
         {props.roles.map((role) => (
           role.habits.map((habit) => (
             <Habit
+                currentRole={role}
+                currentHabit={habit}
               name={habit.name}
               amount={habit.amount}
               completed={habit.completed}
               handleCompleteHabit={props.handleCompleteHabit}
               handleGetStreak={props.handleGetStreak}
               id={habit._id}
+              displayEdit={true}
             />
         ))
         ))}
