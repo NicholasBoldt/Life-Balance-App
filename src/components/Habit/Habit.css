@@ -19,3 +19,11 @@
     display: flex;
     justify-content: right;
 }
+
+.Habit-link { 
+    color: grey;
+}
+
+.Habit-link:hover { 
+    text-decoration: underline;
+}

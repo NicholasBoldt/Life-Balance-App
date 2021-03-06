@@ -16,7 +16,13 @@ function Habit(props) {
 
   return (
     <div className="Habit">
-      <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div>
+    {props.displayEdit ? <Link className="Habit-link" to={{
+              pathname: '/habit-details',
+              state: {currentRole, currentHabit}
+          }}> <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div></Link> : ""}
+     
+
+
 
       <div className="Habit-controls">
         {props.completed ? (
@@ -40,11 +46,7 @@ function Habit(props) {
           <i class="material-icons">whatshot</i> 0 */}
         </div>
         )}
-    
-        {props.displayEdit ? <Link className="Habit-link btn-small" to={{
-              pathname: '/habit-details',
-              state: {currentRole, currentHabit}
-          }}>Edit</Link> : ""}
+
       </div>
       {/* <div>
       <Link className="Habit-link btn btn-default" to={{
