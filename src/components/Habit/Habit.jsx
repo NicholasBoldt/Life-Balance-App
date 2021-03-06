@@ -19,7 +19,7 @@ function Habit(props) {
     {props.displayEdit ? <Link className="Habit-link" to={{
               pathname: '/habit-details',
               state: {currentRole, currentHabit}
-          }}> <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div></Link> : ""}
+          }}> <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div></Link> : <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div>}
      
 
 
