@@ -1,22 +1,22 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import "./Habit.css";
-
+import flame from "../../sounds/flame.mp3"
+import useSound from 'use-sound';
 
 function Habit(props) {
     const currentRole = props.currentRole;
     const currentHabit = props.currentHabit;
   const [streak, setStreak] = useState();
 
+
   useEffect(async () => {
     setStreak(await props.handleGetStreak(props.id));
     console.log("use effect:", streak)
   });
 
- 
 
   
-
   return (
     <div className="Habit">
     {props.displayEdit ? <Link className="Habit-link" to={{
