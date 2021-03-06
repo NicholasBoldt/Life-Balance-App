@@ -6,11 +6,14 @@ import "./Habit.css";
 function Habit(props) {
     const currentRole = props.currentRole;
     const currentHabit = props.currentHabit;
-  const [streak, setStreak] = useState(0);
+  const [streak, setStreak] = useState();
 
-  useEffect(() => {
-    // setStreak(props.handleGetStreak(props.id));
+  useEffect(async () => {
+    setStreak(await props.handleGetStreak(props.id));
+    console.log("use effect:", streak)
   });
+
+ 
 
   
 
@@ -19,12 +22,17 @@ function Habit(props) {
     {props.displayEdit ? <Link className="Habit-link" to={{
               pathname: '/habit-details',
               state: {currentRole, currentHabit}
-          }}> <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div></Link> : <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div>}
+          }}> <div className="Habit-text">{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div></Link> : <div>{props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;  </div>}
      
 
 
-
       <div className="Habit-controls">
+      {props.completed ? 
+        <div className="align-vertical Streak-orange">{streak}<i class="material-icons">whatshot</i></div>
+        :
+        <div className="align-vertical Streak-grey">{streak}<i class="material-icons">whatshot</i></div>}
+
+
         {props.completed ? (
         <div>
             <button
@@ -32,8 +40,7 @@ function Habit(props) {
             onClick={() => props.handleCompleteHabit(props.id)}>
             Completed
           </button>
-          {/* &nbsp;
-          <i class="material-icons orange">whatshot</i> 1 */}
+      
         </div>
         ) : (
             <div >
@@ -46,16 +53,7 @@ function Habit(props) {
           <i class="material-icons">whatshot</i> 0 */}
         </div>
         )}
-
       </div>
-      {/* <div>
-      <Link className="Habit-link btn btn-default" to={{
-              pathname: '/habit-details',
-              state: {currentRole, currentHabit}
-          }}>Edit</Link>
-      </div> */}
-        
-  
     </div>
   );
 };

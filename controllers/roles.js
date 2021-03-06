@@ -143,6 +143,7 @@ async function addTask(req, res) {
             current_date.setDate(current_date.getDate() - 1)
         }
     }
+    console.log(streak)
     res.status(200).json(streak);
 }
 

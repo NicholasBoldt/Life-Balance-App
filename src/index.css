@@ -25,3 +25,8 @@ code {
   font-size: 24px;
   text-align: center;
 }
+
+.align-vertical {
+  display: flex;
+  align-items: center;
+}

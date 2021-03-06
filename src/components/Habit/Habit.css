@@ -10,8 +10,7 @@
 
 .Habit-text {
     display: flex;
-    justify-content: left;
-    
+    justify-content: space-between;
 }
 
 
@@ -26,4 +25,12 @@
 
 .Habit-link:hover { 
     text-decoration: underline;
+}
+
+.Streak-orange {
+    color: orange;
+}
+
+.Streak-grey {
+    color: grey;
 }
