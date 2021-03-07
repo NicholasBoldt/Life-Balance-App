@@ -22,7 +22,6 @@ function Habit(props) {
 
   return (
     <div className="Habit">
-      {props.displayEdit ? (
         <Link
           className="Habit-link"
           to={{
@@ -30,17 +29,9 @@ function Habit(props) {
             state: { currentRole, currentHabit },
           }}
         >
-          {" "}
-          <div className="Habit-text">
-            {props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;{" "}
-          </div>
+        <div>{props.name}:&nbsp;&nbsp;</div>
+        <div>{props.amount}</div>
         </Link>
-      ) : (
-        <div>
-          {props.name}&nbsp;&nbsp;{props.amount}&nbsp;&nbsp;{" "}
-        </div>
-      )}
-
       <div className="Habit-controls">
         {props.completed ? (
           <div className="align-vertical Streak-orange">
