@@ -43,9 +43,6 @@ class App extends React.Component {
     const roles = await rolesService.deleteRole(id);
     this.setState({ roles: roles });
     this.props.history.push("/");
-    // this.setState(state => ({
-    //   roles: state.roles.filter(role => role._id !== id)
-    // }));
   };
 
   handleAddHabit = async () => {
