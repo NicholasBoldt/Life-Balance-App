@@ -29,8 +29,8 @@ function Habit(props) {
             state: { currentRole, currentHabit },
           }}
         >
-        <div>{props.name}:&nbsp;&nbsp;</div>
-        <div>{props.amount}</div>
+            <div>{props.name}{props.amount ? ":" : ""}&nbsp;&nbsp;</div>
+            <div>{props.amount}</div>
         </Link>
       <div className="Habit-controls">
         {props.completed ? (
