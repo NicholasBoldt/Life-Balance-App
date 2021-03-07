@@ -90,7 +90,7 @@ function deleteTask(id) {
 
   function completeHabit(id) {
     console.log(id);
-    return fetch(BASE_URL + "/completeHabit/" + id, {
+    return fetch(BASE_URL + "completeHabit/" + id, {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -109,6 +109,15 @@ function deleteTask(id) {
     }).then((res) => res.json());
   }
 
+  function resetHabits() {
+    return fetch(BASE_URL + "resetHabits/", {
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      }),
+    }).then((res) => res.json());
+  }
+
 export default {
   addRole,
   getAll,
@@ -116,6 +125,7 @@ export default {
   addHabit,
   updateHabit,
   deleteHabit,
+  resetHabits,
   addTask,
   deleteTask,
   completeHabit,

@@ -152,7 +152,6 @@ async function addTask(req, res) {
     user.roles.forEach(function(role) {
         role.habits.forEach(function(habit) {
             if (habit.id === req.params.id) {
-              console.log(habit.completed);
               if (habit.completed) {
                 habit.completed = false;
                 user.save();
@@ -167,7 +166,6 @@ async function addTask(req, res) {
                 if (!today_exists_in_log) {
                   habit.completed_dates.push(today);
                 }
-                console.log(habit.completed);
                 user.save();
                 res.status(200).json(user.roles);
               }
@@ -175,7 +173,25 @@ async function addTask(req, res) {
         });
     });
   }
-  
+
+  async function resetHabits(req, res) {
+    user = await User.findById(req.user._id);
+    user.roles.forEach(function (role) {
+      role.habits.forEach(function (habit) {
+        let today = new Date();
+        today.setHours(0, 0, 0, 0);
+        todayExists = habit.completed_dates.some(
+          (dateInLog) => dateInLog.getTime() == today.getTime()
+        );
+        if (!todayExists) {
+          habit.completed = false;
+        }
+      });
+    });
+    user.save();
+    res.status(200).json();
+  }
+     
 module.exports = {
   addRole,
   index,
@@ -183,6 +199,7 @@ module.exports = {
   addHabit,
   updateHabit,
   deleteHabit,
+  resetHabits,
   addTask,
   deleteTask,
   completeHabit,
