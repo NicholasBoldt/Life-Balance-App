@@ -175,6 +175,7 @@ async function addTask(req, res) {
   }
 
   async function resetHabits(req, res) {
+    console.log("reset habits hit")
     user = await User.findById(req.user._id);
     user.roles.forEach(function (role) {
       role.habits.forEach(function (habit) {
@@ -188,8 +189,9 @@ async function addTask(req, res) {
         }
       });
     });
+    console.log("reset habits complete");
     user.save();
-    res.status(200).json();
+    res.status(200).json(user.roles);
   }
      
 module.exports = {

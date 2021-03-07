@@ -17,7 +17,7 @@ router.put('/:id/updateHabit', checkAuth, rolesCtrl.updateHabit);
 router.delete('/:id/deleteHabit', checkAuth, rolesCtrl.deleteHabit);
 router.post('/completeHabit/:id', checkAuth, rolesCtrl.completeHabit);
 router.get('/getStreak/:id', checkAuth, rolesCtrl.calculateStreak);
-router.put('/resetHabits', checkAuth, rolesCtrl.resetHabits);
+router.get('/resetHabits', checkAuth, rolesCtrl.resetHabits);
 
 router.post('/:id/addTask', checkAuth, rolesCtrl.addTask);
 router.delete('/deleteTask/:id', checkAuth, rolesCtrl.deleteTask);

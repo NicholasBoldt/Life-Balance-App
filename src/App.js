@@ -89,9 +89,8 @@ class App extends React.Component {
   // Life Cycle
 
   async componentDidMount() {
-    rolesService.resetHabits();
+    const roles = await rolesService.resetHabits();
     console.log("componentdidmount")
-    const roles = await rolesService.getAll();
     this.setState({ roles: roles });
   }
 
