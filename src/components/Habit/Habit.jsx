@@ -32,6 +32,7 @@ function Habit(props) {
             <div>{props.name}{props.amount ? ":" : ""}&nbsp;&nbsp;</div>
             <div>{props.amount}</div>
         </Link>
+        &nbsp;&nbsp;
       <div className="Habit-controls">
         {props.completed ? (
           <div className="align-vertical Streak-orange">
