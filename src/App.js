@@ -180,7 +180,12 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/tasks" render={(props) => <TasksPage />} />
+          <Route exact path="/tasks" render={(props) =>    
+            <TasksPage 
+              roles={this.state.roles}
+              handleDeleteTask={this.handleDeleteTask}
+            />
+          }/>
         </Switch>
       </div>
     );

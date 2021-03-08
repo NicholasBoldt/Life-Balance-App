@@ -8,11 +8,6 @@
     width: 110px;
 }
 
-.Habit-text {
-    display: flex;
-    justify-content: space-between;
-}
-
 
 .Habit-controls {
     display: flex;
@@ -21,8 +16,6 @@
 
 .Habit-link { 
     color: black;
-    display: flex;
-    justify-content: space-between;
 }
 
 .Habit-link:hover { 
