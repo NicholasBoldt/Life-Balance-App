@@ -180,7 +180,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/tasks" render={(props) =>    
+          <Route exact path="/tasks" render={() =>    
             <TasksPage 
               roles={this.state.roles}
               handleDeleteTask={this.handleDeleteTask}

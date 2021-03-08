@@ -12,7 +12,7 @@ const TasksPage = (props) => {
             <Task
               name={task.name}
               handleDeleteTask={props.handleDeleteTask}
-              id={task._id}
+              taskId={task._id}
             />
         ))
         ))}
