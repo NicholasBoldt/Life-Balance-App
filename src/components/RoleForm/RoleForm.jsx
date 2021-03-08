@@ -25,7 +25,9 @@ class RoleForm extends Component {
     }
   }
 
-
+  isFormInvalid() {
+    return !(this.state.name);
+  }
 
   render() {
     return (
@@ -41,7 +43,7 @@ class RoleForm extends Component {
             onChange={this.handleChange}
           />
 
-          <button className="btn-small">Add Role</button>
+          <button className="btn-small" disabled={this.isFormInvalid()}>Add</button>
         </form>
       </div>
     );

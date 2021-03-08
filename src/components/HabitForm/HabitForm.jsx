@@ -29,8 +29,12 @@ class HabitForm extends Component {
     this.props.handleUpdateHabit();
   };
 
+  isFormInvalid() {
+    return !(this.state.name);
+  }
 
-  render(props) {
+
+  render() {
     return (
       <div className="HabitForm">
         <header className="header-footer">{this.props.update ? 'Update Habit' : 'Add Habit'}</header>
@@ -59,7 +63,7 @@ class HabitForm extends Component {
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">{this.props.update ? "Update Habit" : "Add Habit"}</button>
+              <button className="btn btn-default" disabled={this.isFormInvalid()}>{this.props.update ? "Update Habit" : "Add Habit"}</button>
             </div>
           </div>
         </form>

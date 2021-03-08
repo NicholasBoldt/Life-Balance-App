@@ -24,6 +24,10 @@ class TaskForm extends Component {
 
   };
 
+  isFormInvalid() {
+    return !(this.state.name);
+  }
+
   render() {
     return (
       <div>
@@ -40,30 +44,10 @@ class TaskForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            {/* <div className="col-sm-12">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Day"
-                value={this.state.day}
-                name="day"
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="col-sm-12">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Time"
-                value={this.state.time}
-                name="time"
-                onChange={this.handleChange}
-              />
-            </div> */}
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default">Add Task</button>
+              <button className="btn btn-default" disabled={this.isFormInvalid()}>Add Task</button>
             </div>
           </div>
         </form>
