@@ -8,6 +8,12 @@
     width: 110px;
 }
 
+.Habit-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 
 .Habit-controls {
     display: flex;

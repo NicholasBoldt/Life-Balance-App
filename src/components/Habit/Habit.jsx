@@ -22,7 +22,10 @@ function Habit(props) {
 
   return (
     <div className="Habit">
-        {/* <div onClick={() => props.handleMoveUpHabit(props.id)}><i class="material-icons" >arrow_drop_up</i></div> */}
+      <div className="Habit-left">
+        {/* <div onClick={() => props.handleMoveUpHabit(props.id)}>
+          <i class="material-icons">arrow_drop_up</i>
+        </div> */}
         <Link
           className="Habit-link"
           to={{
@@ -30,10 +33,15 @@ function Habit(props) {
             state: { currentRole, currentHabit },
           }}
         >
-            <div>{props.name}{props.amount ? ":" : ""}&nbsp;&nbsp;</div>
-            <div>{props.amount}</div>
+          <div>
+            {props.name}
+            {props.amount ? ":" : ""}&nbsp;&nbsp;
+          </div>
+          <div>{props.amount}</div>
         </Link>
         &nbsp;&nbsp;
+      </div>
+
       <div className="Habit-controls">
         {props.completed ? (
           <div className="align-vertical Streak-orange">
