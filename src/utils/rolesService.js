@@ -118,6 +118,15 @@ function deleteTask(id) {
     }).then((res) => res.json());
   }
 
+  function moveUpHabit(id) {
+    return fetch(BASE_URL + "moveUpHabit/" + id, {
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      }),
+    }).then((res) => res.json());
+  }
+
 export default {
   addRole,
   getAll,
@@ -125,6 +134,7 @@ export default {
   addHabit,
   updateHabit,
   deleteHabit,
+  moveUpHabit,
   resetHabits,
   addTask,
   deleteTask,

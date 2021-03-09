@@ -9,7 +9,7 @@ const HabitsPage = (props) => {
     <div className="HabitsPage">
       <div className="header-footer">All Habits</div>
       <div>
-        {props.roles.map((role) =>
+        {props.roles.map((role) => 
           role.habits.map((habit) => (
             <Habit
               currentRole={role}

@@ -82,6 +82,11 @@ class App extends React.Component {
     return streak;
   };
 
+  handleMoveUpHabit = async (id) => {
+    const roles = await rolesService.moveUpHabit(id);
+    this.setState({ roles: roles });
+  }
+
   handleBack = () => {
     this.props.history.goBack();
   };
@@ -148,6 +153,7 @@ class App extends React.Component {
                 roles={this.state.roles}
                 handleCompleteHabit={this.handleCompleteHabit}
                 handleGetStreak={this.handleGetStreak}
+                handleMoveUpHabit={this.moveUpHabit}
               />
             )}
           />
@@ -165,6 +171,7 @@ class App extends React.Component {
                 handleCompleteHabit={this.handleCompleteHabit}
                 handleGetStreak={this.handleGetStreak}
                 history={this.props.history}
+                handleMoveUpHabit={this.handleMoveUpHabit}
               />
             )}
           />
@@ -177,6 +184,7 @@ class App extends React.Component {
                 location={location}
                 handleUpdateHabit={this.handleUpdateHabit}
                 handleDeleteHabit={this.handleDeleteHabit}
+  
               />
             )}
           />

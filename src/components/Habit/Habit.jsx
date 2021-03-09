@@ -22,6 +22,7 @@ function Habit(props) {
 
   return (
     <div className="Habit">
+        {/* <div onClick={() => props.handleMoveUpHabit(props.id)}><i class="material-icons" >arrow_drop_up</i></div> */}
         <Link
           className="Habit-link"
           to={{

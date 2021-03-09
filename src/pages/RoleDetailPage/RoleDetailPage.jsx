@@ -33,6 +33,7 @@ function RoleDetailPage(props) {
                 completed={habit.completed}
                 handleCompleteHabit={props.handleCompleteHabit}
                 handleGetStreak={props.handleGetStreak}
+                handleMoveUpHabit={props.handleMoveUpHabit}
                 history={props.history}
                 displayEdit={true}
               />

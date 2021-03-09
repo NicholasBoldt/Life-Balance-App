@@ -206,19 +206,24 @@ async function addTask(req, res) {
     res.status(200).json(user.roles);
   }
 
-//   async function MoveUpHabit(req, res) {
-//     user = await User.findById(req.user._id);
-//     user.roles.forEach(function(role) {
-//         const idx = role.habits.findIndex((habit) => {
-//           return habit._id == req.params.id;
-//         });
-        
-//             role.habits.splice(idx, 1);
-//             role.habits.splice(idx-2, 0, newHabit);
-//     });
-//     await user.save();
-//     res.status(200).json(user.roles);
-//   }
+  async function moveUpHabit(req, res) {
+    user = await User.findById(req.user._id);
+    user.roles.forEach(function(role) {
+        let tempHabit = {};
+        const idx = role.habits.findIndex((habit) => {
+          if(habit._id == req.params.id) {
+            tempHabit = habit;
+            return habit._id;
+          }
+        });
+        if(idx !== -1) {
+            role.habits.splice(idx, 1);
+            role.habits.unshift(tempHabit)
+        }
+    });
+    await user.save();
+    res.status(200).json(user.roles);
+  }
      
 module.exports = {
   addRole,
@@ -227,6 +232,7 @@ module.exports = {
   addHabit,
   updateHabit,
   deleteHabit,
+  moveUpHabit,
   resetHabits,
   addTask,
   deleteTask,
