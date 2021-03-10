@@ -8,9 +8,9 @@ A MERN Stack role based habit app. Based heavily on Atomic Habits and the 7 Habi
 - Streaks that show your progress
 
 ## Screenshots
-![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/The-Life-Balance-App/main/assets/screenshots/Roles.png)
-![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/The-Life-Balance-App/main/assets/screenshots/Role.png)
-![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/The-Life-Balance-App/main/assets/screenshots/Habits.png)
+![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/Life-Balance-App/main/assets/screenshots/Roles.png)
+![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/Life-Balance-App/main/assets/screenshots/Role.png)
+![ScreenShot](https://raw.githubusercontent.com/NicholasBoldt/Life-Balance-App/main/assets/screenshots/Habits.png)
 
 ## Technologies Used
 - HTML
