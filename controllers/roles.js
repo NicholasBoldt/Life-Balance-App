@@ -123,41 +123,41 @@ async function addTask(req, res) {
   }
 
    async function calculateStreak(req, res) {
-    user = await User.findById(req.user._id);
-    dates = [];
-    user.roles.forEach((role) => {
-      role.habits.forEach((habit) => {
-        if (habit.id == req.params.id) {
-            console.log("dates:", habit.completed_dates)
-          dates = habit.completed_dates;
-        }
-      });
-    });
-    let current_date = new Date()
-    current_date.setHours(0,0,0,0)
-    let streak = 0
-    for (let i = dates.length -1; i >= 0; i--) {
-        while(i >= 0 && dates[i].getTime() == current_date.getTime()) {
-            streak++
-            i--
-            current_date.setDate(current_date.getDate() - 1)
-        }
-    }
-    let yesterdayDate = new Date()
-    yesterdayDate.setHours(0,0,0,0)
-    yesterdayDate.setDate(yesterdayDate.getDate() - 1)
-    if(streak === 0) {
-        for (let i = dates.length -1; i >= 0; i--) {
-            while(i >= 0 && dates[i].getTime() == yesterdayDate.getTime()) {
-                streak++
-                i--
-                yesterdayDate.setDate(yesterdayDate.getDate() - 1)
-            }
-        }
-    }
-    console.log(streak)
-    res.status(200).json(streak);
-}
+     user = await User.findById(req.user._id);
+     dates = [];
+     user.roles.forEach((role) => {
+       role.habits.forEach((habit) => {
+         if (habit.id == req.params.id) {
+           console.log("dates:", habit.completed_dates);
+           dates = habit.completed_dates;
+         }
+       });
+     });
+     let current_date = new Date();
+     current_date.setHours(0, 0, 0, 0);
+     let streak = 0;
+     for (let i = dates.length - 1; i >= 0; i--) {
+       while (i >= 0 && dates[i].getTime() == current_date.getTime()) {
+         streak++;
+         i--;
+         current_date.setDate(current_date.getDate() - 1);
+       }
+     }
+     let yesterdayDate = new Date();
+     yesterdayDate.setHours(0, 0, 0, 0);
+     yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+     if (streak === 0) {
+       for (let i = dates.length - 1; i >= 0; i--) {
+         while (i >= 0 && dates[i].getTime() == yesterdayDate.getTime()) {
+           streak++;
+           i--;
+           yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+         }
+       }
+     }
+     console.log(streak);
+     res.status(200).json(streak);
+   }
 
   async function completeHabit(req, res) {
     user = await User.findById(req.user._id);
