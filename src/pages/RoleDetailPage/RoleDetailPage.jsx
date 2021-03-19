@@ -35,7 +35,7 @@ function RoleDetailPage(props) {
                 handleGetStreak={props.handleGetStreak}
                 handleMoveUpHabit={props.handleMoveUpHabit}
                 history={props.history}
-                displayEdit={true}
+                displayMove={true}
               />
             ))
           : ""}

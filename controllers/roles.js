@@ -216,12 +216,19 @@ async function addTask(req, res) {
         });
         if(idx !== -1) {
             role.habits.splice(idx, 1);
-            role.habits.unshift(tempHabit)
+            // role.habits.unshift(tempHabit)
+            if(idx == 0) {
+                role.habits.push(tempHabit);
+            } else {
+                role.habits.splice(idx-1, 0, tempHabit);
+            }
         }
     });
     await user.save();
     res.status(200).json(user.roles);
   }
+
+
      
 module.exports = {
   addRole,

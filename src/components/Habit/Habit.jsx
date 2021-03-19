@@ -23,9 +23,11 @@ function Habit(props) {
   return (
     <div className="Habit">
       <div className="Habit-left">
-        {/* <div onClick={() => props.handleMoveUpHabit(props.id)}>
+        { props.displayMove ?  <div onClick={() => props.handleMoveUpHabit(props.id)}>
           <i class="material-icons">arrow_drop_up</i>
-        </div> */}
+        </div> : 
+        "" }
+      
         <Link
           className="Habit-link"
           to={{
@@ -72,8 +74,6 @@ function Habit(props) {
             >
               Incomplete
             </button>
-            {/* &nbsp;
-          <i class="material-icons">whatshot</i> 0 */}
           </div>
         )}
       </div>
