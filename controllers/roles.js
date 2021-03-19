@@ -172,10 +172,10 @@ async function addTask(req, res) {
                 habit.completed = true;
                 let today = new Date();
                 today.setHours(0, 0, 0, 0);
-                today_exists_in_log = habit.completed_dates.some(
-                  (date_in_log) => date_in_log.getTime() == today.getTime()
+                todayExists = habit.completed_dates.some(
+                  (dateInLog) => dateInLog.getTime() == today.getTime()
                 );
-                if (!today_exists_in_log) {
+                if (!todayExists) {
                   habit.completed_dates.push(today);
                 }
                 user.save();
@@ -187,7 +187,6 @@ async function addTask(req, res) {
   }
 
   async function resetHabits(req, res) {
-    console.log("reset habits hit")
     user = await User.findById(req.user._id);
     user.roles.forEach(function (role) {
       role.habits.forEach(function (habit) {
@@ -201,7 +200,6 @@ async function addTask(req, res) {
         }
       });
     });
-    console.log("reset habits complete");
     user.save();
     res.status(200).json(user.roles);
   }
