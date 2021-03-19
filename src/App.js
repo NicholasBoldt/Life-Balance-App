@@ -26,6 +26,7 @@ class App extends React.Component {
 
   handleSignupOrLogin = async () => {
     this.setState({ user: userService.getUser()});
+    await rolesService.resetHabits();
     await this.handleAddRole();
   };
 
