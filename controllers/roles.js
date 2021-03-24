@@ -1,10 +1,11 @@
 const User = require("../models/user");
+const user = require("../models/user");
 
 async function addRole(req, res) {
   console.log(req.body);
   console.log(req.user);
   try {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     console.log(user);
     await user.roles.push(req.body);
     await user.save();
@@ -16,14 +17,14 @@ async function addRole(req, res) {
 }
 
 async function index(req, res) {
-  user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id);
   const roles = user.roles;
   res.status(200).json(roles);
 }
 
 async function deleteRole(req, res) {
   console.log(req.params.id);
-  user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id);
   user.roles = user.roles.filter((role) => role._id != req.params.id);
   await user.save();
   res.status(200).json(user.roles);
@@ -32,7 +33,7 @@ async function deleteRole(req, res) {
 async function addHabit(req, res) {
   console.log(req.body);
   try {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.roles.forEach(role => {
         if(role._id == req.params.id) {
             console.log(role)
@@ -48,45 +49,65 @@ async function addHabit(req, res) {
 }
 
 async function updateHabit(req, res) {
-    console.log(req.body);
-    try {
-      user = await User.findById(req.user._id);
-      console.log("user: ", user)
-      user.roles.forEach(role => {
-          role.habits.forEach(habit => {
-            if(habit._id == req.params.id) {
-                console.log(habit._id)
-                console.log(habit)
-                habit.name = req.body.name,
-                habit.amount = req.body.amount
-            } else {
-                console.log("Habit not found")
-            }
-          });
-      });
-      await user.save();
-      res.status(200).json(user.roles);
-    } catch (err) {
-      console.log(err);
-      res.status(400).json(err);
-    }
-  }
-
-  async function deleteHabit(req, res) {
-    user = await User.findById(req.user._id);
-    user.roles.forEach(function(role) {
-        const idx = role.habits.findIndex(habit => {
-            console.log("habitid:", habit._id)
-            console.log("params:", req.params.id)
-            return habit._id == req.params.id});
-        console.log(idx);
-        if(idx != -1) {
-            role.habits.splice(idx, 1);
+  console.log(req.body);
+  try {
+    const user = await User.findById(req.user._id);
+    console.log("user: ", user);
+    user.roles.forEach((role) => {
+      role.habits.forEach((habit) => {
+        if (habit._id == req.params.id) {
+          console.log(habit._id);
+          console.log(habit);
+          (habit.name = req.body.name), (habit.amount = req.body.amount);
+        } else {
+          console.log("Habit not found");
         }
+      });
     });
+    if (req.body.newRole) {
+      let tempHabit;
+      user.roles.forEach(function (role) {
+        const idx = role.habits.findIndex((habit) => {
+          console.log("habitid:", habit._id);
+          console.log("params:", req.params.id);
+          return habit._id == req.params.id;
+        });
+        console.log(idx);
+        if (idx != -1) {
+          tempHabit = role.habits[idx];
+          role.habits.splice(idx, 1);
+        }
+      });
+      user.roles.forEach(function (role) {
+        if (role.name == req.body.newRole) {
+          role.push(tempHabit);
+        }
+      });
+    }
     await user.save();
     res.status(200).json(user.roles);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
   }
+}
+
+async function deleteHabit(req, res) {
+    const user = await User.findById(req.user._id);
+  user.roles.forEach(function (role) {
+    const idx = role.habits.findIndex((habit) => {
+      console.log("habitid:", habit._id);
+      console.log("params:", req.params.id);
+      return habit._id == req.params.id;
+    });
+    console.log(idx);
+    if (idx != -1) {
+      role.habits.splice(idx, 1);
+    }
+  });
+  await user.save();
+  res.status(200).json(user.roles);
+}
 
 async function addTask(req, res) {
     console.log(req.body);
@@ -107,7 +128,7 @@ async function addTask(req, res) {
   }
   
   async function deleteTask(req, res) {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.roles.forEach(function(role) {
         const idx = role.tasks.findIndex(task => {
             console.log("taskid:", task._id)
@@ -123,7 +144,7 @@ async function addTask(req, res) {
   }
 
    async function calculateStreak(req, res) {
-     user = await User.findById(req.user._id);
+     const user = await User.findById(req.user._id);
      dates = [];
      user.roles.forEach((role) => {
        role.habits.forEach((habit) => {
@@ -160,7 +181,7 @@ async function addTask(req, res) {
    }
 
   async function completeHabit(req, res) {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.roles.forEach(function(role) {
         role.habits.forEach(function(habit) {
             if (habit.id === req.params.id) {
@@ -187,7 +208,7 @@ async function addTask(req, res) {
   }
 
   async function resetHabits(req, res) {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.roles.forEach(function (role) {
       role.habits.forEach(function (habit) {
         let today = new Date();
@@ -205,7 +226,7 @@ async function addTask(req, res) {
   }
 
   async function moveUpHabit(req, res) {
-    user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     user.roles.forEach(function(role) {
         let tempHabit = {};
         const idx = role.habits.findIndex((habit) => {
