@@ -8,7 +8,7 @@ class HabitForm extends Component {
     this.state = {
       name: "",
       amount: "",
-      newRole: ""
+    //   newRole: ""
     };
   }
 
@@ -61,7 +61,7 @@ class HabitForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            { this.props.update ? 
+            {/* { this.props.update ? 
             <div>
             <select value={this.state.newRole} onChange={this.handleChange} >
                 <option value="Art">Art</option>
@@ -70,7 +70,7 @@ class HabitForm extends Component {
                 <option value="mango">Mango</option>
               </select>
             </div>
-              : ""}
+              : ""} */}
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
