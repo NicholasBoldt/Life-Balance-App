@@ -1,5 +1,4 @@
 const User = require("../models/user");
-const user = require("../models/user");
 
 async function addRole(req, res) {
   console.log(req.body);
@@ -112,7 +111,7 @@ async function deleteHabit(req, res) {
 async function addTask(req, res) {
     console.log(req.body);
     try {
-      user = await User.findById(req.user._id);
+      const user = await User.findById(req.user._id);
       user.roles.forEach(role => {
           if(role._id == req.params.id) {
               console.log(role)
