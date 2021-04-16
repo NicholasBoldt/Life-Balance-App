@@ -5,7 +5,7 @@ function addRole(role) {
   console.log(role)
   return fetch(BASE_URL + 'addRole', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json',
+    headers: {
      'Authorization': 'Bearer ' + tokenService.getToken()},
     body: JSON.stringify(role),
   })
@@ -14,7 +14,6 @@ function addRole(role) {
 function getAll() {
   return fetch(BASE_URL, {
     headers: {
-      "Content-Type": "application/json",
       'Authorization': "Bearer " + tokenService.getToken(),
     }
   }).then((res) => res.json());
@@ -24,7 +23,6 @@ function deleteRole(id) {
   return fetch(BASE_URL + id, {
     method: "DELETE",
     headers: {
-      "Content-Type": "application/json",
       'Accept': "application/json",
       'Authorization': "Bearer " + tokenService.getToken(),
     },
@@ -36,7 +34,6 @@ function addHabit(habit, id) {
   return fetch(BASE_URL + id + "/addHabit", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       'Authorization': "Bearer " + tokenService.getToken(),
     },
     body: JSON.stringify(habit),
@@ -47,7 +44,6 @@ export function updateHabit(habit, id) {
     return fetch(BASE_URL + id + "/updateHabit", {
       method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
       body: JSON.stringify(habit)
@@ -58,7 +54,6 @@ export function updateHabit(habit, id) {
     return fetch(BASE_URL + id + "/deleteHabit", {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
         'Accept': "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
@@ -70,7 +65,6 @@ function addTask(task, id) {
   return fetch(BASE_URL + id + "/addTask", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       'Authorization': "Bearer " + tokenService.getToken(),
     },
     body: JSON.stringify(task),
@@ -81,7 +75,6 @@ function deleteTask(id) {
     return fetch(BASE_URL + "deleteTask/" + id, {
       method: "DELETE",
       headers: {
-        "Content-Type": "application/json",
         'Accept': "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
@@ -93,7 +86,6 @@ function deleteTask(id) {
     return fetch(BASE_URL + "completeHabit/" + id, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
      }).then((res) => res.json());
@@ -103,7 +95,6 @@ function deleteTask(id) {
     console.log(id)
     return fetch(BASE_URL + "getStreak/" + id, {
       headers: {
-        "Content-Type": "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
     }).then((res) => res.json());
@@ -112,7 +103,6 @@ function deleteTask(id) {
   function resetHabits() {
     return fetch(BASE_URL + "resetHabits/", {
       headers: {
-        "Content-Type": "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
     }).then((res) => res.json());
@@ -121,7 +111,6 @@ function deleteTask(id) {
   function moveUpHabit(id) {
     return fetch(BASE_URL + "moveUpHabit/" + id, {
       headers: {
-        "Content-Type": "application/json",
         'Authorization': "Bearer " + tokenService.getToken(),
       },
     }).then((res) => res.json());
