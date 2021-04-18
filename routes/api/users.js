@@ -8,7 +8,7 @@ router.post('/login', usersCtrl.login);
 
 
 /*---------- Protected Routes ----------*/
-
+router.get('/get', usersCtrl.getUserFromId);
 
 
 

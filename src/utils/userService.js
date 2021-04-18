@@ -12,6 +12,7 @@ function signup(user) {
     throw new Error('Email already taken!');
   })
   .then(({ token }) => {
+    console.log(token);
     tokenService.setToken(token);
   });
 }
@@ -32,7 +33,9 @@ function login(creds) {
 
 
 function getUser() {
-  return tokenService.getUserFromToken();
+  return fetch(BASE_URL + "get", {
+    headers: new Headers({'Content-Type': 'application/json'}),
+  }).then((res) => res.json());
 }
 
 
