@@ -27,8 +27,11 @@ class App extends React.Component {
   handleSignupOrLogin = async () => {
     let newUser = await userService.getUser();
     this.setState({user: newUser});
-    await rolesService.resetHabits();
-    await this.handleAddRole();
+    console.log("new user test", newUser)
+    if(newUser) {
+      await rolesService.resetHabits();
+      await this.handleAddRole();
+    }
   };
 
   handleLogout = () => {
