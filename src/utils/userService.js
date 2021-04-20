@@ -33,9 +33,18 @@ function login(creds) {
 
 
 function getUser() {
-  return fetch(BASE_URL + "get", {
-    headers: new Headers({'Content-Type': 'application/json'}),
-  }).then((res) => res.json());
+  const userId = tokenService.getUserFromToken();
+  console.log(userId);
+  if(userId) {
+    return fetch(BASE_URL + "get", {
+      method: "POST",
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + tokenService.getToken(),
+      }),
+      body: JSON.stringify({id: userId}),
+    }).then((res) => res.json());
+  }
 }
 
 
@@ -48,7 +57,6 @@ export default {
   login,
   getUser,
   logout,
-
 }
 
 

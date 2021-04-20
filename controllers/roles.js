@@ -4,7 +4,7 @@ async function addRole(req, res) {
   console.log(req.body);
   console.log(req.user);
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     console.log(user);
     await user.roles.push(req.body);
     await user.save();
@@ -16,14 +16,14 @@ async function addRole(req, res) {
 }
 
 async function index(req, res) {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user);
   const roles = user.roles;
   res.status(200).json(roles);
 }
 
 async function deleteRole(req, res) {
   console.log(req.params.id);
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user);
   user.roles = user.roles.filter((role) => role._id != req.params.id);
   await user.save();
   res.status(200).json(user.roles);
@@ -32,7 +32,7 @@ async function deleteRole(req, res) {
 async function addHabit(req, res) {
   console.log(req.body);
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     user.roles.forEach(role => {
         if(role._id == req.params.id) {
             console.log(role)
@@ -50,7 +50,7 @@ async function addHabit(req, res) {
 async function updateHabit(req, res) {
   console.log(req.body);
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     console.log("user: ", user);
     user.roles.forEach((role) => {
       role.habits.forEach((habit) => {
@@ -92,7 +92,7 @@ async function updateHabit(req, res) {
 }
 
 async function deleteHabit(req, res) {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
   user.roles.forEach(function (role) {
     const idx = role.habits.findIndex((habit) => {
       console.log("habitid:", habit._id);
@@ -111,7 +111,7 @@ async function deleteHabit(req, res) {
 async function addTask(req, res) {
     console.log(req.body);
     try {
-      const user = await User.findById(req.user._id);
+      const user = await User.findById(req.user);
       user.roles.forEach(role => {
           if(role._id == req.params.id) {
               console.log(role)
@@ -127,7 +127,7 @@ async function addTask(req, res) {
   }
   
   async function deleteTask(req, res) {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     user.roles.forEach(function(role) {
         const idx = role.tasks.findIndex(task => {
             console.log("taskid:", task._id)
@@ -143,7 +143,7 @@ async function addTask(req, res) {
   }
 
    async function calculateStreak(req, res) {
-     const user = await User.findById(req.user._id);
+     const user = await User.findById(req.user);
      dates = [];
      user.roles.forEach((role) => {
        role.habits.forEach((habit) => {
@@ -180,7 +180,7 @@ async function addTask(req, res) {
    }
 
   async function completeHabit(req, res) {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     user.roles.forEach(function(role) {
         role.habits.forEach(function(habit) {
             if (habit.id === req.params.id) {
@@ -207,7 +207,7 @@ async function addTask(req, res) {
   }
 
   async function resetHabits(req, res) {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     user.roles.forEach(function (role) {
       role.habits.forEach(function (habit) {
         let today = new Date();
@@ -225,7 +225,7 @@ async function addTask(req, res) {
   }
 
   async function moveUpHabit(req, res) {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user);
     user.roles.forEach(function(role) {
         let tempHabit = {};
         const idx = role.habits.findIndex((habit) => {

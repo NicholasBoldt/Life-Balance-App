@@ -19,13 +19,14 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: userService.getUser(),
+      user: null,
       roles: [],
     };
   }
 
   handleSignupOrLogin = async () => {
-    this.setState({ user: userService.getUser()});
+    let newUser = await userService.getUser();
+    this.setState({user: newUser});
     await rolesService.resetHabits();
     await this.handleAddRole();
   };
@@ -94,11 +95,9 @@ class App extends React.Component {
 
   // Life Cycle
 
-  async componentDidMount() {
-    const roles = await rolesService.resetHabits();
-    console.log("componentdidmount")
-    this.setState({ roles: roles });
-  }
+  componentDidMount = () => {
+    this.handleSignupOrLogin();
+  };
 
   // async componentDidUpdate(prevProps, prevState) {
   //   if(prevState.roles.length !== this.state.roles.length) {
@@ -111,7 +110,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="header-footer">LIFE BALANCE APP</header>
-
         <NavBar user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route

@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const bodyParser = require('body-parser')
 require('dotenv').config();
 require('./config/database');
 
@@ -9,6 +10,10 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
+
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));

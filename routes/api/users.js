@@ -8,9 +8,13 @@ router.post('/login', usersCtrl.login);
 
 
 /*---------- Protected Routes ----------*/
-router.get('/get', usersCtrl.getUserFromId);
+router.post('/get', usersCtrl.getUserFromId);
 
-
+/*----- Helper Functions -----*/
+// function checkAuth(req, res, next) {
+//     if (req.user) return next();
+//     return res.status(401).json({msg: 'Not Authorized'});
+//   }
 
 
 module.exports = router;

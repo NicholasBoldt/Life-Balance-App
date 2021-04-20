@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const { default: tokenService } = require("../src/utils/tokenService");
 const SECRET = process.env.SECRET;
 
 function createJWT(user) {
@@ -40,15 +39,16 @@ async function login(req, res) {
 }
 
 async function getUserFromId(req, res) {
+  console.log("body", req.body.id)
   try {
-    const userId = await tokenService.getUserFromToken();
-    const user = await User.findOne({ _id: userId});
-    return user;
+    const user = await User.findOne({ _id: req.body.id});
+    console.log(user);
+    return res.status(200).json(user);
   } catch (err) {
+    console.log("error here");
     return res.status(400).json(err);
   }
 }
-
 
 
 
