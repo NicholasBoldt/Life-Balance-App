@@ -4,14 +4,14 @@ import "./Habit.css";
 import flame from '../../sounds/flame.mp3'
 
 
-function Habit(props) {
+const Habit = props => {
   const currentRole = props.currentRole;
   const currentHabit = props.currentHabit;
   const [streak, setStreak] = useState();
 
   useEffect(async () => {
     setStreak(await props.handleGetStreak(props.id));
-  });
+  }, []);
   
   let audio = new Audio(flame)
 

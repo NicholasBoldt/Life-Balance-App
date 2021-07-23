@@ -28,7 +28,7 @@ class RolesPage extends Component {
           ))}
         </div>
       );
-
+      
     let userSingedIn = this.props.user ? (
       <div>
         <div className="header-footer">Roles</div>
