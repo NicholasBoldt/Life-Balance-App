@@ -2,7 +2,6 @@ const User = require("../models/user");
 
 async function addRole(req, res) {
   console.log(req.body);
-  console.log(req.user);
   try {
     const user = await User.findById(req.user);
     console.log(user);

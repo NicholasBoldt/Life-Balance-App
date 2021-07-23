@@ -2,8 +2,8 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/roles/';
 
 function addRole(role) {
-  console.log(role)
   const token = localStorage.token;
+  console.log(JSON.stringify(role))
   return fetch(BASE_URL + 'addRole', {
     method: 'POST',
     headers: {'Content-Type': 'application/json',
