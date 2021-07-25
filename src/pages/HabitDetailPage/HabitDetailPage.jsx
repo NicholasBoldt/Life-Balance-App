@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import HabitForm from "../../components/HabitForm/HabitForm"
-import Habit from "../../components/Habit/Habit"
 
 function HabitDetailPage(props) {
     const [roleId, setRoleId] = useState(props.location.state?.currentRole._id);
