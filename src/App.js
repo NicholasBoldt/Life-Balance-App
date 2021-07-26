@@ -7,7 +7,7 @@ import { Route, Switch, withRouter } from
 import HabitsPage from './pages/HabitsPage/HabitsPage';
 import RolesPage from './pages/RolesPage/RolesPage';
 import TasksPage from './pages/TasksPage/TasksPage';
-import LoginPage from './pages/LoginPage/LoginPage.jsx';
+import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import RoleDetailPage from './pages/RoleDetailPage/RoleDetailPage';
 import HabitDetailPage from './pages/HabitDetailPage/HabitDetailPage';
