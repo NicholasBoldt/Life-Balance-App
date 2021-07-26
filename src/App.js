@@ -1,19 +1,16 @@
-import './App.css';
-import React from 'react'
-import NavBar from './components/NavBar/NavBar';
-import { Redirect } from 'react-router-dom';
-import { Route, Switch, withRouter } from 
-'react-router-dom';
-import HabitsPage from './pages/HabitsPage/HabitsPage';
-import RolesPage from './pages/RolesPage/RolesPage';
-import TasksPage from './pages/TasksPage/TasksPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import SignupPage from './pages/SignupPage/SignupPage';
-import RoleDetailPage from './pages/RoleDetailPage/RoleDetailPage';
-import HabitDetailPage from './pages/HabitDetailPage/HabitDetailPage';
-import userService from './utils/userService';
-import rolesService from './utils/rolesService';
-
+import "./App.css";
+import React from "react";
+import NavBar from "./components/NavBar/NavBar";
+import { Route, Switch, withRouter } from "react-router-dom";
+import HabitsPage from "./pages/HabitsPage/HabitsPage";
+import RolesPage from "./pages/RolesPage/RolesPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import RoleDetailPage from "./pages/RoleDetailPage/RoleDetailPage";
+import HabitDetailPage from "./pages/HabitDetailPage/HabitDetailPage";
+import userService from "./utils/userService";
+import rolesService from "./utils/rolesService";
 
 class App extends React.Component {
   constructor() {
@@ -26,9 +23,9 @@ class App extends React.Component {
 
   handleSignupOrLogin = async () => {
     let newUser = await userService.getUser();
-    this.setState({user: newUser});
-    console.log("new user test", newUser)
-    if(newUser) {
+    this.setState({ user: newUser });
+    console.log("new user test", newUser);
+    if (newUser) {
       await rolesService.resetHabits();
       await this.handleAddRole();
     }
@@ -90,7 +87,7 @@ class App extends React.Component {
   handleMoveUpHabit = async (id) => {
     const roles = await rolesService.moveUpHabit(id);
     this.setState({ roles: roles });
-  }
+  };
 
   handleBack = () => {
     this.props.history.goBack();
@@ -186,16 +183,19 @@ class App extends React.Component {
                 location={location}
                 handleUpdateHabit={this.handleUpdateHabit}
                 handleDeleteHabit={this.handleDeleteHabit}
-  
               />
             )}
           />
-          <Route exact path="/tasks" render={() =>    
-            <TasksPage 
-              roles={this.state.roles}
-              handleDeleteTask={this.handleDeleteTask}
-            />
-          }/>
+          <Route
+            exact
+            path="/tasks"
+            render={() => (
+              <TasksPage
+                roles={this.state.roles}
+                handleDeleteTask={this.handleDeleteTask}
+              />
+            )}
+          />
         </Switch>
       </div>
     );

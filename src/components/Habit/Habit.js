@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Habit.css";
-import flame from '../../sounds/flame.mp3'
+import flame from "../../sounds/flame.mp3";
 
-
-const Habit = props => {
+const Habit = (props) => {
   const currentRole = props.currentRole;
   const currentHabit = props.currentHabit;
   const [streak, setStreak] = useState();
@@ -12,22 +11,24 @@ const Habit = props => {
   useEffect(async () => {
     setStreak(await props.handleGetStreak(props.id));
   }, []);
-  
-  let audio = new Audio(flame)
+
+  let audio = new Audio(flame);
 
   const completeClicked = () => {
-      audio.play();
-      props.handleCompleteHabit(props.id)
-  }
+    audio.play();
+    props.handleCompleteHabit(props.id);
+  };
 
   return (
     <div className="Habit">
       <div className="Habit-left">
-        { props.displayMove ?  <div onClick={() => props.handleMoveUpHabit(props.id)}>
-          <i class="material-icons">arrow_drop_up</i>
-        </div> : 
-        "" }
-      
+        {props.displayMove ? (
+          <div onClick={() => props.handleMoveUpHabit(props.id)}>
+            <i class="material-icons">arrow_drop_up</i>
+          </div>
+        ) : (
+          ""
+        )}
         <Link
           className="Habit-link"
           to={{

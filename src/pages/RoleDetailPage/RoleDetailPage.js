@@ -57,7 +57,7 @@ function RoleDetailPage(props) {
           history={props.history}
           update={false}
         />
-        &nbsp; &nbsp; &nbsp; &nbsp; 
+        &nbsp; &nbsp; &nbsp; &nbsp;
         <TaskForm role={currentRole} handleAddTask={props.handleAddTask} />
       </div>
       <button
