@@ -1,74 +1,120 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import userService from '../../utils/userService';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import userService from "../../utils/userService";
 
-class SignupForm extends Component {
+const SignupForm = props => {
+  const [enteredName, setEnteredName] = useState('')
+  const [enteredEmail, setEnteredEmail] = useState('')
+  const [enteredPassword, setEnteredPassword] = useState('')
+  const [enteredPasswordConf, setEnteredPasswordConf] = useState('')
 
-  state = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConf: ''
+  const handleNameChange = event => {
+    props.updateMessage("");
+    setEnteredName(event.target.value)
   };
 
-  handleChange = (e) => {
-    this.props.updateMessage('');
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
+  const handleEmailChange = event => {
+    props.updateMessage("");
+    setEnteredEmail(event.target.value)
+  };
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
+  const handlePasswordChange = event => {
+    props.updateMessage("");
+    setEnteredPassword(event.target.value)
+  };
+
+  const handlePasswordConfChange = event => {
+    props.updateMessage("");
+    setEnteredPasswordConf(event.target.value)
+  };
+
+  const handleSubmit = async event => {
+    event.preventDefault();
     try {
-      await userService.signup(this.state);
-      this.props.handleSignupOrLogin();
-      this.props.history.push('/');
+      await userService.signup({name: setEnteredName, email: enteredEmail, password: enteredPassword});
+      props.handleSignupOrLogin();
+      props.history.push("/");
     } catch (err) {
       // Invalid user data (probably duplicate email)
-      this.props.updateMessage(err.message);
+      props.updateMessage(err.message);
     }
+  };
+
+  const isFormInvalid = () => {
+    return !(
+      enteredName && enteredEmail && enteredPassword && enteredPasswordConf === enteredPassword
+    );
   }
 
-  isFormInvalid() {
-    return !(this.state.name && this.state.email && this.state.password === this.state.passwordConf);
-  }
 
-  render() {
     return (
       <div>
         <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit} >
+        <form className="form-horizontal" onSubmit={handleSubmit}>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="text" className="form-control" placeholder="Name" value={this.state.name} name="name" onChange={this.handleChange} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Name"
+                value={enteredName}
+                name="name"
+                onChange={handleNameChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="email" className="form-control" placeholder="Email" value={this.state.email} name="email" onChange={this.handleChange} />
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Email"
+                value={enteredEmail}
+                name="email"
+                onChange={handleEmailChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Password" value={this.state.password} name="password" onChange={this.handleChange} />
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Password"
+                value={enteredPassword}
+                name="password"
+                onChange={handlePasswordChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12">
-              <input type="password" className="form-control" placeholder="Confirm Password" value={this.state.passwordConf} name="passwordConf" onChange={this.handleChange} />
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Confirm Password"
+                value={enteredPasswordConf}
+                name="passwordConf"
+                onChange={handlePasswordConfChange}
+              />
             </div>
           </div>
           <div className="form-group">
             <div className="col-sm-12 text-center">
-              <button className="btn btn-default" disabled={this.isFormInvalid()}>Sign Up</button>&nbsp;&nbsp;
-              <Link to='/'>Cancel</Link>
+              <button
+                className="btn btn-default"
+                disabled={isFormInvalid()}
+              >
+                Sign Up
+              </button>
+              &nbsp;&nbsp;
+              <Link to="/">Cancel</Link>
             </div>
           </div>
         </form>
       </div>
     );
-  }
+
 }
 
 export default SignupForm;
