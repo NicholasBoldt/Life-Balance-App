@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { PromiseProvider } from "mongoose";
 import Habit from "../../components/Habit/Habit";
 import "./HabitsPage.css";
 

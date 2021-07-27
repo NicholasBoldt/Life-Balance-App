@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import NavBar from "./components/NavBar/NavBar";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import HabitsPage from "./pages/HabitsPage/HabitsPage";
 import RolesPage from "./pages/RolesPage/RolesPage";
 import TasksPage from "./pages/TasksPage/TasksPage";

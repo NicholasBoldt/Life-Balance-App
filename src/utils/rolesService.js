@@ -2,7 +2,7 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/roles/';
 
 function addRole(role) {
-  const token = localStorage.token;
+  const token = tokenService.getToken();
   console.log(JSON.stringify(role))
   return fetch(BASE_URL + 'addRole', {
     method: 'POST',
@@ -13,7 +13,7 @@ function addRole(role) {
 }
 
 function getAll() {
-  const token = localStorage.token;
+  const token = tokenService.getToken();
   return fetch(BASE_URL, {
     headers: {
       'Authorization': "Bearer " + token,
@@ -22,7 +22,7 @@ function getAll() {
 }
 
 function deleteRole(id) {
-  const token = localStorage.token;
+  const token = tokenService.getToken();
   return fetch(BASE_URL + id, {
     method: "DELETE",
     headers: {
@@ -35,7 +35,7 @@ function deleteRole(id) {
 
 function addHabit(habit, id) {
   console.log(habit);
-  const token = localStorage.token;
+  const token = tokenService.getToken();
   return fetch(BASE_URL + id + "/addHabit", {
     method: "POST",
     headers: {
@@ -47,7 +47,7 @@ function addHabit(habit, id) {
 }
 
 export function updateHabit(habit, id) {
-  const token = localStorage.token;
+  const token = tokenService.getToken();
     return fetch(BASE_URL + id + "/updateHabit", {
       method: 'PUT',
       headers: {
@@ -59,7 +59,7 @@ export function updateHabit(habit, id) {
   }
 
   function deleteHabit(id) {
-    const token = localStorage.token;
+    const token = tokenService.getToken();
     return fetch(BASE_URL + id + "/deleteHabit", {
       method: "DELETE",
       headers: {
@@ -71,8 +71,7 @@ export function updateHabit(habit, id) {
   }
 
 function addTask(task, id) {
-  console.log(task);
-  const token = localStorage.token;
+  const token = tokenService.getToken();
   return fetch(BASE_URL + id + "/addTask", {
     method: "POST",
     headers: {
@@ -84,7 +83,7 @@ function addTask(task, id) {
 }
 
 function deleteTask(id) {
-  const token = localStorage.token;
+  const token = tokenService.getToken();
     return fetch(BASE_URL + "deleteTask/" + id, {
       method: "DELETE",
       headers: {
@@ -96,8 +95,7 @@ function deleteTask(id) {
   }
 
   function completeHabit(id) {
-    console.log(id);
-    const token = localStorage.token;
+    const token = tokenService.getToken();
     return fetch(BASE_URL + "completeHabit/" + id, {
       method: "POST",
       headers: {
@@ -108,8 +106,7 @@ function deleteTask(id) {
   }
 
   function calculateStreak(id) {
-    console.log(id)
-    const token = localStorage.token;
+    const token = tokenService.getToken();
     return fetch(BASE_URL + "getStreak/" + id, {
       headers: {
         "Content-Type": "application/json",
@@ -119,7 +116,7 @@ function deleteTask(id) {
   }
 
   function resetHabits() {
-    const token = localStorage.token;
+    const token = tokenService.getToken();
     return fetch(BASE_URL + "resetHabits/", {
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +126,7 @@ function deleteTask(id) {
   }
 
   function moveUpHabit(id) {
-    const token = localStorage.token;
+    const token = tokenService.getToken();
     return fetch(BASE_URL + "moveUpHabit/" + id, {
       headers: {
         "Content-Type": "application/json",

@@ -8,9 +8,13 @@ const Habit = (props) => {
   const currentHabit = props.currentHabit;
   const [streak, setStreak] = useState();
 
-  useEffect(async () => {
-    setStreak(await props.handleGetStreak(props.id));
-  }, []);
+  useEffect(() => {
+    async function getNewStreak() {
+      const newStreak = await props.handleGetStreak(props.id)
+      setStreak(newStreak);
+    }
+    getNewStreak();
+  }, [props]);
 
   let audio = new Audio(flame);
 
