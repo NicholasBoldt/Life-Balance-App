@@ -10,6 +10,7 @@ const TasksPage = (props) => {
         {props.roles.map((role) => (
           role.tasks.map((task) => (
             <Task
+              key={task._id}
               name={task.name}
               handleDeleteTask={props.handleDeleteTask}
               taskId={task._id}

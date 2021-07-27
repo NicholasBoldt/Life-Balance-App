@@ -25,6 +25,7 @@ function RoleDetailPage(props) {
         {currentRole.habits
           ? currentRole.habits.map((habit) => (
               <Habit
+                key={habit._id}
                 currentRole={currentRole}
                 id={habit._id}
                 currentHabit={habit}

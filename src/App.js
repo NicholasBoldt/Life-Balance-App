@@ -19,7 +19,6 @@ const App = (props) => {
   const handleSignupOrLogin = async () => {
     const newUser = await userService.getUser();
     setUser(newUser);
-    console.log("new user test", newUser);
     if (newUser) {
       await rolesService.resetHabits();
       await handleAddRole();
