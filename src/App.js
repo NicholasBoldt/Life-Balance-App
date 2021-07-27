@@ -1,205 +1,183 @@
-import './App.css';
-import React from 'react'
-import NavBar from './components/NavBar/NavBar';
-import { Redirect } from 'react-router-dom';
-import { Route, Switch, withRouter } from 
-'react-router-dom';
-import HabitsPage from './pages/HabitsPage/HabitsPage';
-import RolesPage from './pages/RolesPage/RolesPage';
-import TasksPage from './pages/TasksPage/TasksPage';
-import LoginPage from './pages/LoginPage/LoginPage.jsx';
-import SignupPage from './pages/SignupPage/SignupPage';
-import RoleDetailPage from './pages/RoleDetailPage/RoleDetailPage';
-import HabitDetailPage from './pages/HabitDetailPage/HabitDetailPage';
-import userService from './utils/userService';
-import rolesService from './utils/rolesService';
+import "./App.css";
+import React, { useState, useEffect } from "react";
+import NavBar from "./components/NavBar/NavBar";
+import { Route, Switch } from "react-router-dom";
+import HabitsPage from "./pages/HabitsPage/HabitsPage";
+import RolesPage from "./pages/RolesPage/RolesPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
+import RoleDetailPage from "./pages/RoleDetailPage/RoleDetailPage";
+import HabitDetailPage from "./pages/HabitDetailPage/HabitDetailPage";
+import userService from "./utils/userService";
+import rolesService from "./utils/rolesService";
 
+const App = (props) => {
+  const [user, setUser] = useState(null);
+  const [roles, setRoles] = useState([]);
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null,
-      roles: [],
-    };
-  }
-
-  handleSignupOrLogin = async () => {
-    let newUser = await userService.getUser();
-    this.setState({user: newUser});
-    console.log("new user test", newUser)
-    if(newUser) {
+  const handleSignupOrLogin = async () => {
+    const newUser = await userService.getUser();
+    setUser(newUser);
+    if (newUser) {
       await rolesService.resetHabits();
-      await this.handleAddRole();
+      await handleAddRole();
     }
   };
 
-  handleLogout = () => {
+  const handleLogout = () => {
     userService.logout();
-    this.setState({ user: null });
+    setUser(null);
   };
 
-  handleAddRole = async () => {
-    const roles = await rolesService.getAll();
-    this.setState({ roles: roles });
+  const handleAddRole = async () => {
+    const userRoles = await rolesService.getAll();
+    setRoles(userRoles);
   };
 
-  handleDeleteRole = async (id) => {
-    const roles = await rolesService.deleteRole(id);
-    this.setState({ roles: roles });
-    this.props.history.push("/");
+  const handleDeleteRole = async (id) => {
+    const userRoles = await rolesService.deleteRole(id);
+    setRoles(userRoles);
+    props.history.push("/");
   };
 
-  handleAddHabit = async () => {
-    const roles = await rolesService.getAll();
-    this.setState({ roles: roles });
+  const handleAddHabit = async () => {
+    const userRoles = await rolesService.getAll();
+    setRoles(userRoles);
   };
 
-  handleUpdateHabit = async () => {
-    const roles = await rolesService.getAll();
-    this.setState({ roles: roles });
+  const handleUpdateHabit = async () => {
+    const userRoles = await rolesService.getAll();
+    setRoles(userRoles);
   };
 
-  handleDeleteHabit = async (id) => {
-    const roles = await rolesService.deleteHabit(id);
-    this.setState({ roles: roles });
-    this.props.history.push("/");
+  const handleDeleteHabit = async (id) => {
+    const userRoles = await rolesService.deleteHabit(id);
+    setRoles(userRoles);
+    props.history.push("/");
   };
 
-  handleDeleteTask = async (id) => {
-    const roles = await rolesService.deleteTask(id);
-    this.setState({ roles: roles });
+  const handleDeleteTask = async (id) => {
+    const userRoles = await rolesService.deleteTask(id);
+    setRoles(userRoles);
   };
 
-  handleAddTask = async () => {
-    const roles = await rolesService.getAll();
-    this.setState({ roles: roles });
+  const handleAddTask = async () => {
+    const userRoles = await rolesService.getAll();
+    setRoles(userRoles);
   };
 
-  handleCompleteHabit = async (id) => {
-    const roles = await rolesService.completeHabit(id);
-    this.setState({ roles: roles });
+  const handleCompleteHabit = async (id) => {
+    const userRoles = await rolesService.completeHabit(id);
+    setRoles(userRoles);
   };
 
-  handleGetStreak = async (id) => {
+  const handleGetStreak = async (id) => {
     const streak = await rolesService.calculateStreak(id);
-    console.log(streak);
     return streak;
   };
 
-  handleMoveUpHabit = async (id) => {
-    const roles = await rolesService.moveUpHabit(id);
-    this.setState({ roles: roles });
-  }
-
-  handleBack = () => {
-    this.props.history.goBack();
+  const handleMoveUpHabit = async (id) => {
+    const userRoles = await rolesService.moveUpHabit(id);
+    setRoles(userRoles);
   };
 
-  // Life Cycle
+  useEffect(() => {
+    handleSignupOrLogin();
+  }, []);
 
-  componentDidMount = () => {
-    this.handleSignupOrLogin();
-  };
-
-  // async componentDidUpdate(prevProps, prevState) {
-  //   if(prevState.roles.length !== this.state.roles.length) {
-  //     const roles = await rolesService.getAll();
-  //     this.setState({ roles: roles });
-  //   }
-  // }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="header-footer">LIFE BALANCE APP</header>
-        <NavBar user={this.state.user} handleLogout={this.handleLogout} />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={({ history }) => (
-              <RolesPage
-                history={history}
-                user={this.state.user}
-                roles={this.state.roles || []}
-                handleAddRole={this.handleAddRole}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/signup"
-            render={({ history }) => (
-              <SignupPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/login"
-            render={({ history }) => (
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/habits"
-            render={() => (
-              <HabitsPage
-                roles={this.state.roles}
-                handleCompleteHabit={this.handleCompleteHabit}
-                handleGetStreak={this.handleGetStreak}
-                handleMoveUpHabit={this.moveUpHabit}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/details"
-            render={({ location }) => (
-              <RoleDetailPage
-                roles={this.state.roles}
-                location={location}
-                handleDeleteRole={this.handleDeleteRole}
-                handleAddHabit={this.handleAddHabit}
-                handleAddTask={this.handleAddTask}
-                handleDeleteTask={this.handleDeleteTask}
-                handleCompleteHabit={this.handleCompleteHabit}
-                handleGetStreak={this.handleGetStreak}
-                history={this.props.history}
-                handleMoveUpHabit={this.handleMoveUpHabit}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/habit-details"
-            render={({ location }) => (
-              <HabitDetailPage
-                roles={this.state.roles}
-                location={location}
-                handleUpdateHabit={this.handleUpdateHabit}
-                handleDeleteHabit={this.handleDeleteHabit}
-  
-              />
-            )}
-          />
-          <Route exact path="/tasks" render={() =>    
-            <TasksPage 
-              roles={this.state.roles}
-              handleDeleteTask={this.handleDeleteTask}
+  return (
+    <div className="App">
+      <header className="header-footer">LIFE BALANCE APP</header>
+      <NavBar user={user} handleLogout={handleLogout} />
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={({ history }) => (
+            <RolesPage
+              history={history}
+              user={user}
+              roles={roles || []}
+              handleAddRole={handleAddRole}
             />
-          }/>
-        </Switch>
-      </div>
-    );
-  }
-}
+          )}
+        />
+        <Route
+          exact
+          path="/signup"
+          render={({ history }) => (
+            <SignupPage
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/login"
+          render={({ history }) => (
+            <LoginPage
+              history={history}
+              handleSignupOrLogin={handleSignupOrLogin}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/habits"
+          render={() => (
+            <HabitsPage
+              roles={roles}
+              handleCompleteHabit={handleCompleteHabit}
+              handleGetStreak={handleGetStreak}
+              handleMoveUpHabit={handleMoveUpHabit}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/details"
+          render={({ location }) => (
+            <RoleDetailPage
+              roles={roles}
+              location={location}
+              handleDeleteRole={handleDeleteRole}
+              handleAddHabit={handleAddHabit}
+              handleAddTask={handleAddTask}
+              handleDeleteTask={handleDeleteTask}
+              handleCompleteHabit={handleCompleteHabit}
+              handleGetStreak={handleGetStreak}
+              history={props.history}
+              handleMoveUpHabit={handleMoveUpHabit}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/habit-details"
+          render={({ location }) => (
+            <HabitDetailPage
+              roles={roles}
+              location={location}
+              handleUpdateHabit={handleUpdateHabit}
+              handleDeleteHabit={handleDeleteHabit}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/tasks"
+          render={() => (
+            <TasksPage
+              roles={roles}
+              handleDeleteTask={handleDeleteTask}
+            />
+          )}
+        />
+      </Switch>
+    </div>
+  );
+};
 
 export default App;

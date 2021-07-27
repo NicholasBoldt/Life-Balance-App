@@ -25,6 +25,7 @@ function RoleDetailPage(props) {
         {currentRole.habits
           ? currentRole.habits.map((habit) => (
               <Habit
+                key={habit._id}
                 currentRole={currentRole}
                 id={habit._id}
                 currentHabit={habit}
@@ -57,7 +58,7 @@ function RoleDetailPage(props) {
           history={props.history}
           update={false}
         />
-        &nbsp; &nbsp; &nbsp; &nbsp; 
+        &nbsp; &nbsp; &nbsp; &nbsp;
         <TaskForm role={currentRole} handleAddTask={props.handleAddTask} />
       </div>
       <button
